@@ -13,7 +13,7 @@ import {
 	TableCell,
 	TableHead,
 	TableRow,
-} from "@material-ui/core";
+} from "@mui/material";
 
 // my nav
 import Nav from "./../../component/navbar/navbar.js";

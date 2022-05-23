@@ -7,7 +7,7 @@ import {
 	Typography,
 	Container,
 	Grid,
-} from "@material-ui/core";
+} from "@mui/material";
 
 // module react-anchor
 import ScrollableAnchor from "react-scrollable-anchor";

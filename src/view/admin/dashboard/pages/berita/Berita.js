@@ -4,9 +4,9 @@ import styles from "./../../../../../asset/css/admin/dashboard/pages/berita.modu
 
 import Axios from "axios";
 
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CircularProgress from "@mui/material/CircularProgress";
 
-import { Card, Modal, Backdrop, Fade, Button } from '@material-ui/core';
+import { Card, Modal, Backdrop, Fade, Button } from '@mui/material';
 
 // Cookie
 import Cookies from "universal-cookie";

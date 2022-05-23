@@ -9,16 +9,16 @@ import logoNav from "./../../asset/image/logo Stikom.jpeg";
 // module react-router-dom haslink scroll animated
 import { HashLink as Link } from "react-router-hash-link";
 
-import { Container, Grid } from "@material-ui/core";
-import { TreeItem, TreeView } from "@material-ui/lab/";
+import { Container, Grid } from "@mui/material";
+import { TreeItem, TreeView } from "@mui/lab/";
 
 // mycss
 import styles from "./navbar.module.css";
 
 // icons material-ui
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ViewHeadlineIcon from "@material-ui/icons/ViewHeadline";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
 
 function Navbar() {
 	// handle dropdown for dekstop mode

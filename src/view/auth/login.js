@@ -7,9 +7,9 @@ import s from "./login.module.css";
 import Logo from "./../../asset/image/logo Stikom.png";
 
 // icon material
-import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import CircularProgress from "@mui/material/CircularProgress";
 
 // router
 import { connect } from "react-redux";

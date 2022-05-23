@@ -6,7 +6,7 @@ import s from "./../../../../asset/css/admin/dashboard/Dashboard.module.css";
 import Chart from './cartjs/chart.js';
 
 // react material ui
-import { Grid, Card } from '@material-ui/core'; 
+import { Grid, Card } from '@mui/material'; 
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';

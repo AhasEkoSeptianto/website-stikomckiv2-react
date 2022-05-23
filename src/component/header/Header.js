@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 
 // icons material-ui
-import AddIcCallIcon from "@material-ui/icons/AddIcCall";
-import EmailIcon from "@material-ui/icons/Email";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import DashboardIcon from "@material-ui/icons/Dashboard";
+import AddIcCallIcon from "@mui/icons-material/AddIcCall";
+import EmailIcon from "@mui/icons-material/Email";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
 // material ui
-import { Container, Grid } from "@material-ui/core";
+import { Container, Grid } from "@mui/material";
 
 // mycss
 import styles from "./Header.module.css";
@@ -26,6 +26,7 @@ class Header extends React.Component {
 		this.state = {
 			isAuth: false,
 			isLoading: true,
+			popMenu: null
 		}
 	}
 
@@ -41,72 +42,56 @@ class Header extends React.Component {
 	}
 
 	render() {
+
+		const { isAuth, popMenu } = this.state
+
 		return (
 			<Fragment>
-				<div className={styles.header}>
+				<div className="bg-gray-100 border-b py-1">
 					<Container>
-						<Grid container spacing={1}>
-							<Grid
-								container
-								item
-								xs={6}
-								className={styles.headerListLeft}
-							>
-								<div className={styles.phoneCenter}>
-									<AddIcCallIcon
-										className={styles.imgCallPhone}
-										style={{ fontSize: 15 }}
-									/>
-									<p className={styles.textIcon}>
-										+62 235 6789
+						<div className="flex items-center justify-between">
+							<div className="flex items-center space-x-7">
+								<div className="flex items-center space-x-1">
+									<AddIcCallIcon className="text-gray-500" style={{ fontSize: 16 }} />
+									<p className='text-gray-600 font-bold text-xs'>
+										+62-235-6789
 									</p>
 								</div>
-								<div className={styles.emailCenter}>
-									<EmailIcon
-										className={styles.imgheaderEmail}
-										style={{ fontSize: 15 }}
-									/>
-									<p className={styles.textIcon}>
+								<div className="flex items-center space-x-1">
+									<EmailIcon className="text-gray-500" style={{ fontSize: 16 }} />
+									<p className='text-gray-600 font-bold text-xs'>
 										stikomckid@gmail.ac.id
 									</p>
 								</div>
-							</Grid>
-							<Grid
-								container
-								item
-								xs={6}
-								className={styles.headerListRight}
-							>
-
-								{/* check apakah user telah login */}
-								<div className={`${this.state.isLoading ? styles.loading : styles.notloading }`}>
-									{this.state.isAuth ? (
-										<Fragment>
-											<Link className={styles.container_login} to="/dashboard">
-												<p className={styles.p_login}>Dashboard</p>
-												<DashboardIcon />
-											</Link>
-											<div
-												className={styles.container_logout}
-												onClick={this.logout}
-											>
-												<p className={styles.p_login}>Logout</p>
-												<AccountCircleIcon />
-											</div>
-										</Fragment>
-										) : (
-											<Link className={styles.container_login} to="/login">
-												<p className={styles.p_login}>Login</p>
-												<AccountCircleIcon />
-											</Link>
-										) }
-									
-								</div>
-
-							</Grid>
-						</Grid>
+							</div>
+							<div className='flex items-center'>
+								<AccountCircleIcon className='text-gray-500 cursor-pointer' style={{ fontSize: '30px' }}   />
+								{/* {isAuth ? (
+									<Fragment>
+										<Link className={styles.container_login} to="/dashboard">
+											<p className={styles.p_login}>Dashboard</p>
+											<DashboardIcon />
+										</Link>
+										<div
+											className={styles.container_logout}
+											onClick={this.logout}
+										>
+											<p className={styles.p_login}>Logout</p>
+											<AccountCircleIcon />
+										</div>
+									</Fragment>
+								) : (
+									<Link className='flex items-center text-gray-500' to="/login">
+										<p className='text-sm font-bold '>Login</p>
+										<AccountCircleIcon  />
+									</Link>
+								)} */}
+							</div>
+						</div>
 					</Container>
 				</div>
+
+				
 			</Fragment>
 		);
 	}

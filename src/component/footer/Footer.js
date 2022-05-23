@@ -3,14 +3,14 @@ import React from "react";
 import s from "./footer.module.css";
 
 // material-ui
-import {  Grid, TextField, Button } from "@material-ui/core";
+import {  Grid, TextField, Button } from "@mui/material";
 
 // axios
 import Axios from "axios";
 
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import EmailRoundedIcon from "@material-ui/icons/EmailRounded";
-import CreateRoundedIcon from "@material-ui/icons/CreateRounded";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
+import CreateRoundedIcon from "@mui/icons-material/CreateRounded";
 
 class Footer extends React.Component {
 	constructor(props) {

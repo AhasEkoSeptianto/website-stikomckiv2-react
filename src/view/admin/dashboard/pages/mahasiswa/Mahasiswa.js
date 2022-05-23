@@ -11,7 +11,7 @@ import { get, post } from './../../../../../lib/axios';
 import { changeName } from './../../../../../lib/changeFormName.js';
 
 // material ui
-import { Modal, Backdrop, Fade, Button } from '@material-ui/core';
+import { Modal, Backdrop, Fade, Button } from '@mui/material';
 
 import { connect } from 'react-redux';
 

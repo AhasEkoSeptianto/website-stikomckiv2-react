@@ -7,7 +7,7 @@ import { changeName, maxLength, changeNumberPhone } from './../../../../../lib/c
 import { post } from './../../../../../lib/axios.js';
 
 // material ui
-import { Paper, FormControl, InputLabel, Select, TextField, Button, InputAdornment } from '@material-ui/core';
+import { Paper, FormControl, InputLabel, Select, TextField, Button, InputAdornment } from '@mui/material';
 
 class addMhs extends React.Component{
 

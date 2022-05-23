@@ -15,7 +15,7 @@ import NavLeft from "./comp_dashboard/navbar_left/navbarLeft.js";
 import NavRight from "./comp_dashboard/navbar_right/navbarRight.js";
 
 // material ui
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 
 // router
 import { Link } from "react-router-dom";

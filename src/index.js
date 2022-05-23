@@ -13,15 +13,16 @@ import rootReducer from "./redux/store.js";
 import { BrowserRouter as Route } from "react-router-dom";
 
 // tailwind css
-import './index.css';
+import "./index.css";
+import { ThemeProvider, StyledEngineProvider } from "@mui/material";
 
 const store = createStore(rootReducer);
 
 ReactDOM.render(
-	<Provider store={store}>
-		<Route>
-			<Router />
-		</Route>
-	</Provider>,
-	document.getElementById("root")
+      <Provider store={store}>
+        <Route>
+          <Router />
+        </Route>
+      </Provider>,
+  document.getElementById("root")
 );
