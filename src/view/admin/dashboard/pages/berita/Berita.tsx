@@ -12,15 +12,15 @@ import { Card, Modal, Backdrop, Fade, Button } from '@mui/material';
 import Cookies from "universal-cookie";
 
 // lib
-import { post } from './../../../../../lib/axios.js';
 
 
 import { connect } from 'react-redux';
+import { post } from "src/lib/axios";
 
 var cookie = new Cookies();
 
-class Master extends React.Component {
-	constructor(props) {
+class Master extends React.Component<any, any> {
+	constructor(props:any) {
 		super(props);
 		this.state = {
 			form: {
@@ -42,9 +42,9 @@ class Master extends React.Component {
 		};
 	}
 
-	_onChangeFile = (e) => {
+	_onChangeFile = (e: any) => {
 		const file = e.target.files[0];
-		this.setState({ form: { ...this.state.form, file: file } });
+		this.setState({ form: { ...this.state.form , file: file } });
 
 		const path = URL.createObjectURL(file);
 		this.setState({ liveImage: path });
@@ -53,7 +53,7 @@ class Master extends React.Component {
 	_btnSave = async () => {
 
 		this.setState({isLoading:true})// loading true
-
+		
 		const formData = new FormData();
 		formData.append("file", this.state.form.file);
 
@@ -122,7 +122,6 @@ class Master extends React.Component {
 							<p>Judul</p>
 							<textarea
 								className='border'
-								type="text"
 								onChange={(e) =>
 									this.setState({
 										form: {
@@ -152,7 +151,6 @@ class Master extends React.Component {
 						<div className={styles.inputText}>
 							<p>Content </p>
 							<textarea
-								type="text"
 								className='border'
 								onChange={(e) =>
 									this.setState({
@@ -219,7 +217,7 @@ class Master extends React.Component {
 				      </Modal>
 
 					<div className={styles.cont_list}>
-						{this.state.listNews.map((val, index) => (
+						{this.state.listNews.map((val: any, index: any) => (
 
 							<Card className='w-1/2 lg:w-1/3 p-5 cursor-pointer hover:shadow-xl ' onClick={
 								() => this.setState({modal: {id:val._id, title: val.title, image: val.imageUrl, content: val.content, open: true }})
@@ -237,9 +235,9 @@ class Master extends React.Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
 	return {
-		changeNav: (nav) => dispatch({type:'change_navDashboard', nav: nav}),
+		changeNav: (nav: any) => dispatch({type:'change_navDashboard', nav: nav}),
 	}
 }
 

@@ -6,34 +6,24 @@ import EmailIcon from "@mui/icons-material/Email";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 // material ui
-import {
-  Avatar,
-  Container,
-  Divider,
-  Grid,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-} from "@mui/material";
-
-// mycss
-import styles from "./Header.module.css";
+import { Menu, MenuItem } from "@mui/material";
 
 // link
 import { Link } from "react-router-dom";
 
 // lib
-import { is_auth } from "./../../lib/is_auth";
-import { removeCookies, getAllCookies } from "./../../lib/cookie";
+import { is_auth } from "../../lib/is_auth";
+import { removeCookies } from "../../lib/cookie";
 
 import IconButton from "@mui/material/IconButton";
 
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Button from '../atoms/button/index'
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
-class Header extends React.Component {
-  constructor(props) {
+class Header extends React.Component<any, any>{
+  constructor(props: any) {
     super(props);
     this.state = {
       isAuth: false,
@@ -55,7 +45,7 @@ class Header extends React.Component {
 
   render() {
     const { isAuth, popMenu } = this.state;
-    
+
     const handleClose = () => {
       this.setState({ ...this.state, popMenu: null });
     };
@@ -63,8 +53,10 @@ class Header extends React.Component {
     return (
       <Fragment>
         <div className="bg-gray-100 border-b py-1">
+          <Button text='test' />
           <div className="flex items-center justify-between container mx-auto">
             <div className="flex items-center space-x-7">
+              
               <div className="flex items-center space-x-1">
                 <AddIcCallIcon
                   className="text-gray-500"

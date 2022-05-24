@@ -12,23 +12,19 @@ import {
 // module react-anchor
 import ScrollableAnchor from "react-scrollable-anchor";
 
-// my nav
-import Nav from "./../../component/navbar/navbar.js";
-
 // mycss
-import s from "./../../asset/css/kalender_akademik.module.css";
+import s from "./../../asset/css/tujuan_prodi_TI.module.css";
+
 
 // react-router-dom link
 import { Link } from "react-router-dom";
 
-// image
-import img_kalender_akademik from "./../../asset/image/Kalender_Akademik_2019-2020_Baru.jpeg";
-
 // my footer
-import Footer from "./../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer.js";
+import Navbar from "src/component/navbar/navbar";
 
-class kalender_akademik extends React.Component {
-	constructor(props) {
+class tujuan_prodi_TI extends React.Component<any, any>{
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			isOpen: [],
@@ -36,13 +32,13 @@ class kalender_akademik extends React.Component {
 	}
 
 	componentDidMount() {
-		document.title = "kalender akademik";
+		document.title = "tujuan prodi TI";
 	}
 
 	render() {
 		return (
 			<Fragment>
-				<Nav />
+				<Navbar />
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>
@@ -66,28 +62,58 @@ class kalender_akademik extends React.Component {
 										Home
 									</Link>
 									<Typography color="textPrimary">
-										Kalender akademik
+										Tujuan prodi TI
 									</Typography>
 								</Breadcrumbs>
 								<div className={s.paperContent}>
 									<h2 className={s.contentheader}>
-										Kalender akademik
+										Tujuan prodi TI
 									</h2>
 									<div className={s.contentmain}>
+										<h3>tujuan prodi TI adalah</h3>
 										<Container>
-											<a
-												href="/image/Kalender_Akademik_2019-2020_Baru.jpeg"
-												target="_blank"
-												alt="kalender akademik"
-											>
-												<img
-													alt="kalendar"
-													src={img_kalender_akademik}
-													className={
-														s.img_kalender_akademik
-													}
-												/>
-											</a>
+											<ul className={s.listTujuan}>
+												<li className={s.li_tujuan}>
+													Menghasilkan lulusan
+													berstandar nasional dan
+													berwawasan global dalam
+													bidang Teknik Informatika
+													yang beriman, berilmu dan
+													berakhlak mulia.
+												</li>
+												<li className={s.li_tujuan}>
+													Menghasilkan penelitian yang
+													berorientasi pada
+													pengembangan keilmuan Teknik
+													Informatika.
+												</li>
+												<li className={s.li_tujuan}>
+													Mengembangkan ilmu dan
+													teknologi inovatif yang
+													dapat memberi sumbangan pada
+													kualitas kehidupan
+													masyarakat yang lebih baik
+													dengan menjunjung tinggi
+													etika dan moral.
+												</li>
+												<li className={s.li_tujuan}>
+													Menghasilkan karya inovatif
+													yang dapat dimanfaatkan oleh
+													masyarakat.
+												</li>
+												<li className={s.li_tujuan}>
+													Terjalinnya link and match
+													program studi dengan dunia
+													industri.
+												</li>
+												<li className={s.li_tujuan}>
+													Terjadinya peningkatan
+													kuantitas maupun kualitas
+													sarana pembelajaran dan
+													laboratorium serta fasilitas
+													ekstrakurikuler
+												</li>
+											</ul>
 										</Container>
 									</div>
 								</div>
@@ -103,12 +129,12 @@ class kalender_akademik extends React.Component {
 									<h4>Kategori</h4>
 									<ul className={s.ul_kategori}>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Berita
 											</Link>
 										</li>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Pengumuman
 											</Link>
 										</li>
@@ -118,12 +144,12 @@ class kalender_akademik extends React.Component {
 									<h4>Pos-pos terbaru</h4>
 									<ul className={s.ul_kategori}>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Berita
 											</Link>
 										</li>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Pengumuman
 											</Link>
 										</li>
@@ -139,4 +165,4 @@ class kalender_akademik extends React.Component {
 	}
 }
 
-export default kalender_akademik;
+export default tujuan_prodi_TI;

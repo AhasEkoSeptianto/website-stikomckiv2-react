@@ -3,13 +3,13 @@ import Cookies from "universal-cookie";
 
 var cookies = new Cookies();
 
-const getCookies = (cookieName) => {
+const getCookies = (cookieName: string) => {
 	let rescookies = cookies.get(cookieName);
 	return rescookies;
 }
 
-const setCookies = (bareer, val) => {
-	let rescookies = cookies.set(bareer, val, { path:'/', samesite:'none', secure:true })
+const setCookies = (bareer: any, val: any) => {
+	let rescookies = cookies.set(bareer, val, { path:'/', sameSite:'none' , secure:true })
 	return rescookies
 } 
 
@@ -18,7 +18,7 @@ const getAllCookies = () => {
 	return rescookies;
 }
 
-const removeCookies = (cookieName) => {
+const removeCookies = (cookieName: string) => {
 	let rescookies = cookies.remove(cookieName);
 	return removeCookies;
 }

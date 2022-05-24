@@ -1,24 +1,25 @@
 import React from 'react';
-import { Chart, registerables } from 'chart.js';
+import { Chart, registerables, ChartType } from 'chart.js';
 
-import { get } from './../../../../../lib/axios.js';
+import { get } from '../../../../../lib/axios.js';
 
 
-class chart extends React.Component{
+class chart extends React.Component<any, any>{
 
         async componentDidMount(){
 
-            var getMhs = await get(`${process.env.REACT_APP_BASE_URL}api/mhs-statistik`);
+            var getMhs: any = await get(`${process.env.REACT_APP_BASE_URL}api/mhs-statistik`);
 
 
             var crnYears = new Date().getFullYear(); 
 
-            var ctx = document.getElementById('myChart').getContext('2d');
+            var c = document?.getElementById('myChart') as HTMLCanvasElement ;
+            var ctx: any = c.getContext('2d')
             
             Chart.register(...registerables)
             
             var myChart = new Chart(ctx, {
-                type: 'line',
+                type: 'line' as ChartType ,
                 data: {
                     labels: getMhs.data.label,
 

@@ -15,8 +15,6 @@ import {
 	TableRow,
 } from "@mui/material";
 
-// my nav
-import Nav from "./../../component/navbar/navbar.js";
 
 // module react-anchor
 import ScrollableAnchor from "react-scrollable-anchor";
@@ -28,13 +26,14 @@ import s from "./../../asset/css/daftar_matakuliah_SI.module.css";
 import { Link } from "react-router-dom";
 
 // my footer
-import Footer from "./../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer.js";
 
 // data mata kuliah TI
-import Data from "./../../component/data/data_daftar_matkul_SI.js";
+import Data from "../../component/data/data_daftar_matkul_SI.js";
+import Navbar from "src/component/navbar/navbar";
 
 class daftar_matakuliah_SI extends React.Component {
-	constructor(props) {
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			isOpen: [],
@@ -50,7 +49,7 @@ class daftar_matakuliah_SI extends React.Component {
 	render() {
 		return (
 			<Fragment>
-				<Nav />
+				<Navbar />
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>

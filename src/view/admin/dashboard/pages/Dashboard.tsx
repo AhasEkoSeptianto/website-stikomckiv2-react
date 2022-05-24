@@ -12,13 +12,13 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 // lib
-import { get, post } from './../../../../lib/axios.js';
+import { get, post } from '../../../../lib/axios.js';
 
 import { connect } from 'react-redux';
 
-class Dashboard extends React.Component {
+class Dashboard extends React.Component<any, any> {
 
-	constructor(props){
+	constructor(props: any){
 		super(props);
 		this.state = {
 			date: new Date(),
@@ -33,7 +33,7 @@ class Dashboard extends React.Component {
 		this.props.changeNav(this.props.location.pathname);
 
 
-		let Visitor = await get(`${process.env.REACT_APP_BASE_URL}api/getvisitor`);
+		let Visitor: any = await get(`${process.env.REACT_APP_BASE_URL}api/getvisitor`);
 		this.setState({visitor: Visitor.data.visitor});
 
 		let Mahasiswa = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa`, { skip: 0 });
@@ -85,9 +85,9 @@ class Dashboard extends React.Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
 	return {
-		changeNav : (nav) => dispatch({type:'change_navDashboard', nav:nav}),
+		changeNav : (nav: any) => dispatch({type:'change_navDashboard', nav:nav}),
 	}
 }
 

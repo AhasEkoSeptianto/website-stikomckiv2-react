@@ -2,16 +2,15 @@ import React from 'react';
 
 import s from './../../../../../asset/css/admin/dashboard/pages/mahasiswa/addMhs.module.css';
 
-// lib
-import { changeName, maxLength, changeNumberPhone } from './../../../../../lib/changeFormName.js';
-import { post } from './../../../../../lib/axios.js';
 
 // material ui
 import { Paper, FormControl, InputLabel, Select, TextField, Button, InputAdornment } from '@mui/material';
+import { post } from 'src/lib/axios';
+import { changeNumberPhone, maxLength, changeName } from 'src/lib/changeFormName';
 
-class addMhs extends React.Component{
+class addMhs extends React.Component<any, any>{
 
-	constructor(props){
+	constructor(props: any){
 		super(props)
 		this.state = {
 			
@@ -24,19 +23,20 @@ class addMhs extends React.Component{
 		}
 	}
 
-	setFormName = (e) => {
-
+	setFormName = (e: any) => {
+		
 		let fmtName = changeName(e.target.value);
 		this.setState({form_nama: fmtName});
 	}
 
-	setFormAlamat = (e) => {
+	setFormAlamat = (e: any) => {
+		
 		let fmtAlamat = maxLength(50, e.target.value);
 		this.setState({form_alamat: fmtAlamat}); 
 	}
 
-	setFormNoTelp = (e) => {
-
+	setFormNoTelp = (e: any) => {
+		
 		var alamat = e.target.value;
 		alamat = changeNumberPhone(alamat);
 		this.setState({form_notelp: alamat})
@@ -64,7 +64,7 @@ class addMhs extends React.Component{
 
 				<Paper className={s.container_form}>
 
-					<TextField label="Nama" className={s.formControl} value={this.state.form_nama} onChange={this.setFormName} maxlength="50" />
+					<TextField label="Nama" className={s.formControl} value={this.state.form_nama} onChange={this.setFormName} />
 
 					<FormControl className={s.formControl}>
 				        <InputLabel >Jurusan</InputLabel>
@@ -115,7 +115,7 @@ class addMhs extends React.Component{
 
 					<TextField label="Alamat" className={s.formControl} onChange={this.setFormAlamat} value={this.state.form_alamat} />
 
-					<TextField label="No Telp" InputProps={{ startAdornment: <InputAdornment position="start">+62</InputAdornment>, }} className={s.formControl} onChange={this.setFormNoTelp} value={this.state.form_notelp} maxlength="50" />
+					<TextField label="No Telp" InputProps={{ startAdornment: <InputAdornment position="start">+62</InputAdornment>, }} className={s.formControl} onChange={this.setFormNoTelp} value={this.state.form_notelp} />
 
 			    	<Button variant="contained" color="primary" className={s.buttonForm} onClick={this.submitForm}>Save</Button>
 			    	<Button variant="contained" color="secondary" className={s.buttonForm} onClick={() => this.props.history.push('/dashboard/mahasiswa')}>Cancel</Button>

@@ -6,20 +6,18 @@ import styles from "./navbar_left.module.css";
 // router
 import { Link } from "react-router-dom";
 
-import IconsCloceNav from "./../../../../../asset/image/icons/close.png";
 
-// router
-import { router_nav } from "./../../routerNav.js";
 
 // lib
-import { getCookies } from './../../../../../lib/cookie';
+import { getCookies } from '../../../../../lib/cookie';
 
 // redux
 import { connect } from 'react-redux';
+import { router_nav } from "../../routerNav";
 
-class navbar_left extends React.Component {
+class navbar_left extends React.Component<any, any>{
 
-	constructor(props){
+	constructor(props:any){
 		super(props);
 	}
 
@@ -58,7 +56,7 @@ class navbar_left extends React.Component {
 }
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
 	return {
 		user: state.user,
 		dashboardNav: state.dashboardNav,

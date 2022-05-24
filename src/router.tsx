@@ -4,27 +4,27 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 // pages
-import Home from "./view/pages/Home.js";
-import Visi_misi_perguruan_tinggi from "./view/pages/visi_misi_perguruan_tinggi.js";
-import Tujuan_perguruan_tinggi from "./view/pages/tujuan_perguruan_tinggi.js";
-import Kalender_akademik from "./view/pages/kalender_akademik.js";
-import Visi_misi_TI from "./view/pages/visi_misi_TI.js";
-import Tujuan_prodi_TI from "./view/pages/tujuan_prodi_TI.js";
-import Daftar_matakuliah_TI from "./view/pages/daftar_matakuliah_TI.js";
-import Visi_misi_SI from "./view/pages/visi_misi_SI.js";
-import Tujuan_prodi_SI from "./view/pages/tujuan_prodi_SI.js";
-import Daftar_matakuliah_SI from "./view/pages/daftar_matakuliah_SI.js";
-import Dashboard from "./view/admin/dashboard/dashboard";
+import Home from "./view/pages/Home";
+import Visi_misi_perguruan_tinggi from "./view/pages/visi_misi_perguruan_tinggi";
+import Tujuan_perguruan_tinggi from "./view/pages/tujuan_perguruan_tinggi";
+import Kalender_akademik from "./view/pages/kalender_akademik";
+import Visi_misi_TI from "./view/pages/visi_misi_TI";
+import Tujuan_prodi_TI from "./view/pages/tujuan_prodi_TI";
+import Daftar_matakuliah_TI from "./view/pages/daftar_matakuliah_TI";
+import Visi_misi_SI from "./view/pages/visi_misi_SI";
+import Tujuan_prodi_SI from "./view/pages/tujuan_prodi_SI";
+import Daftar_matakuliah_SI from "./view/pages/daftar_matakuliah_SI";
 
 // login page
-import Login from "./view/auth/login.js";
+import Login from "./view/auth/login";
+import DashboardAdmin from "./view/admin/dashboard/DashboardAdmin";
 
-class router extends React.Component {
+class Router extends React.Component {
 
 	render() {
 		return (
 			<Switch>
-				<Route path="/dashboard" component={Dashboard} />
+				<Route path="/dashboard" component={DashboardAdmin} />
 				<Route path="/login" component={Login} />
 				<Route
 					path="/daftar-matakuliah-SI"
@@ -56,4 +56,4 @@ class router extends React.Component {
 	}
 }
 
-export default router;
+export default Router;

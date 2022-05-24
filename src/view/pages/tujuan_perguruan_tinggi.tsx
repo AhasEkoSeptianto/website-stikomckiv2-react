@@ -12,20 +12,19 @@ import {
 // module react-anchor
 import ScrollableAnchor from "react-scrollable-anchor";
 
-// mycss
-import s from "./../../asset/css/visi_misi_perguruan_tinggi.module.css";
 
-// my nav
-import Nav from "./../../component/navbar/navbar.js";
+// mycss
+import s from "./../../asset/css/tujuan_perguruan_tinggi.module.css";
 
 // react-router-dom link
 import { Link } from "react-router-dom";
 
 // my footer
-import Footer from "./../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer.js";
+import Navbar from "../../component/navbar/navbar";
 
-class visi_misi_perguruan_tinggi extends React.Component {
-	constructor(props) {
+class tujuan_perguruan_tinggi extends React.Component<any, any>{
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			isOpen: [],
@@ -33,13 +32,13 @@ class visi_misi_perguruan_tinggi extends React.Component {
 	}
 
 	componentDidMount() {
-		document.title = "visi misi perguruan tinggi";
+		document.title = "tujuan perguruan tinggi";
 	}
 
 	render() {
 		return (
 			<Fragment>
-				<Nav />
+				<Navbar />
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>
@@ -63,73 +62,70 @@ class visi_misi_perguruan_tinggi extends React.Component {
 										Home
 									</Link>
 									<Typography color="textPrimary">
-										Visi dan Misi perguruan tinggi
+										Tujuan perguruan tinggi
 									</Typography>
 								</Breadcrumbs>
 								<div className={s.paperContent}>
 									<h2 className={s.contentheader}>
-										Visi dan Misi perguruan tinggi
+										Tujuan Perguruan Tinggi
 									</h2>
 									<div className={s.contentmain}>
-										<h3>Visi</h3>
-										<Container>
-											<p className={s.visi}>
-												Menjadi Perguruan Tinggi Ilmu
-												Komputer yang unggul, adaptif,
-												inovatif dan kreatif dalam
-												bidang sistem informasi cerdas
-												dan sistem jaringan komputer
-												untuk menghasilkan sumber daya
-												manusia yang professional,
-												bertaqwa dan beretika pada Tahun
-												2025.
-											</p>
-										</Container>
-									</div>
-									<div className={s.contentmain}>
-										<h3>Misi</h3>
+										<h5>Tujuan :</h5>
 										<Container>
 											<ul className={s.listTujuan}>
 												<li className={s.li_tujuan}>
-													Menyelenggarakan pendidikan
-													tinggi yang profesional
-													berbasis penelitian dalam
-													bidang Sistem Informasi
-													Cerdas dan Sistem jaringan
-													komputer dengan Kurikulum
-													yang mengacu pada kebutuhan
-													pasar kerja Nasional dan
-													Asia Tenggara
+													Menghasilkan lulusan Sarjana
+													Komputer yang professional,
+													bertaqwa dan beretika sesuai
+													dengan kebutuhan pasar kerja
+													yang mampu mengaplikasikan
+													keahlian dan mampu
+													beradaptasi dengan situasi
+													untuk memanfaatkan ilmu
+													pengetahuan, teknologi dan
+													komputer dalam penyelesaian
 												</li>
 												<li className={s.li_tujuan}>
-													Menyelenggarakan Penelitian
-													dasar dan terapan untuk
-													pengembangan teknologi
+													Menghasilkan Peneliti dan
+													hasil Penelitian yang
+													berkualitas dalam bidang
+													Sistem Informasi Cerdas dan
+													Sistem jaringan komputer
+													yang bermanfaat bagi
+													perkembangan ilmu
+													pengetahuan dan teknologi
+													dengan landasan ketaqwaan.
+												</li>
+												<li className={s.li_tujuan}>
+													Menghasilkan teknologi
 													inovatif dan kreatif yang
 													dapat memberi sumbangan
-													kepada pengembangan ilmu
-													pengetahuan dan teknologi
-													terkini.
+													kepada peningkatan kualitas
+													kehidupan masyarakat yang
+													lebih baik dengan menjunjung
+													tinggi etika dan moral
 												</li>
 												<li className={s.li_tujuan}>
-													Melaksanakan pengabdian
-													masyarakat melalui penerapan
-													teknologi inovatif dan
-													kreatif untuk meningkatka
-													kualitas kehidupan
-													masyarakat yang lebih baik
-													dengan menjunjung tinggi
-													etika dan moral
+													Menghasilkan kerjasama
+													antara perguruan tinggi dan
+													dunia industri untuk
+													mengembangkan link and match
+													antara dunia pendidikan
+													dengan perkembangan
+													kebutuhan pasar kerja,serta
+													wirausaha muda dalam bidang
+													Komputer dan teknologi
+													informasi (technopreneur)
+													yang mampu mengambil
+													keputusan tepat berdasarkan
+													data dan analisis informasi.
 												</li>
 												<li className={s.li_tujuan}>
-													Membina hubungan antara
-													perguruan tinggi dengan
-													dunia usaha dan industri
-													(link and match) untuk
-													menyelenggarakan pembinaan
-													wirausaha bidang Informatika
-													dan Komputer
-													(technopreneur).
+													Menghasilkan, serta dapat
+													memberikan petunjuk dalam
+													memilih berbagai alternatif
+													solusi secara mandiri dan
+													kelompok
 												</li>
 											</ul>
 										</Container>
@@ -147,12 +143,12 @@ class visi_misi_perguruan_tinggi extends React.Component {
 									<h4>Kategori</h4>
 									<ul className={s.ul_kategori}>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Berita
 											</Link>
 										</li>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Pengumuman
 											</Link>
 										</li>
@@ -162,12 +158,12 @@ class visi_misi_perguruan_tinggi extends React.Component {
 									<h4>Pos-pos terbaru</h4>
 									<ul className={s.ul_kategori}>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Berita
 											</Link>
 										</li>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Pengumuman
 											</Link>
 										</li>
@@ -183,4 +179,4 @@ class visi_misi_perguruan_tinggi extends React.Component {
 	}
 }
 
-export default visi_misi_perguruan_tinggi;
+export default tujuan_perguruan_tinggi;

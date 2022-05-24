@@ -1,16 +1,15 @@
 import React from "react";
 
 // my nav
-import Nav from "./../../component/navbar/navbar.js";
 
 // myfooter
-import Footer from "./../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer.js";
 
 // Scrillable module
 import ScrollableAnchor from "react-scrollable-anchor";
 
 // slide js module
-import { Splide, SplideSlide } from "@splidejs/react-splide";
+// import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 // image background splide js
@@ -21,8 +20,9 @@ import bg3 from "./../../asset/image/background/bg3.jpeg";
 // mycss
 import s from "./../../asset/css/home.module.css";
 
-import { get } from './../../lib/axios.js';
-import { setCookies, getCookies } from './../../lib/cookie';
+import { setCookies, getCookies } from '../../lib/cookie';
+import Navbar from "../../component/navbar/navbar";
+import { get } from "../../lib/axios";
 
 
 class Home extends React.Component {
@@ -30,7 +30,7 @@ class Home extends React.Component {
 	async componentDidMount() {
 
 		document.title = "Home";
-
+		
 		let gets = get(`${process.env.REACT_APP_BASE_URL}api/mahasiswa`)
 		
 		let visitor = await get(`${process.env.REACT_APP_BASE_URL}api/visitor`);
@@ -40,11 +40,11 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div className={s.containermPage}>
-				<Nav />
+				<Navbar />
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>
-				<Splide
+				{/* <Splide
 					options={{
 						rewind: true,
 						autoplay: true,
@@ -88,7 +88,7 @@ class Home extends React.Component {
 							className={s.img_background}
 						/>
 					</SplideSlide>
-				</Splide>
+				</Splide> */}
 				<Footer />
 			</div>
 		);

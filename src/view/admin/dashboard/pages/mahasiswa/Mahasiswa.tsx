@@ -6,18 +6,17 @@ import { Link } from 'react-router-dom';
 // css
 import s from './../../../../../asset/css/admin/dashboard/pages/mahasiswa/mahasiswa.module.css';
 
-// lib
-import { get, post } from './../../../../../lib/axios';
-import { changeName } from './../../../../../lib/changeFormName.js';
 
 // material ui
 import { Modal, Backdrop, Fade, Button } from '@mui/material';
 
 import { connect } from 'react-redux';
+import { post } from 'src/lib/axios';
+import { changeName } from 'src/lib/changeFormName';
 
-class Mahasiswa extends React.Component{
+class Mahasiswa extends React.Component<any, any>{
 
-	constructor(props){
+	constructor(props: any){
 		super(props);
 		this.state = {
 			isLoading: true,
@@ -38,10 +37,11 @@ class Mahasiswa extends React.Component{
 	}
 
 	deleteMhs = async () => {
+
 		this.setState({modal: { ...this.state.modal, isLoading: true }});
 		var posts = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa/deleteMhs`, {id: this.state.modal.id_mhs});
 		this.setState({modal: {...this.state.modal, open:false, isLoading: false}});
-		this.updateMhs();
+		this.updateMhs(false);
 	}
 
 	componentDidMount(){
@@ -49,7 +49,7 @@ class Mahasiswa extends React.Component{
 		this.props.changeNav(this.props.location.pathname);
 	}
 
-	changePagination = async (val) => {
+	changePagination = async (val: any) => {
 		switch (val) {
 			case '+' : {
 				this.state.pagination.posPage + 2 > this.state.pagination.maxPage ? console.log('page unknow') : this.updateMhs(this.state.pagination.posPage + 1 ) ;
@@ -66,12 +66,13 @@ class Mahasiswa extends React.Component{
 
 	}
 
-	filterMhs = async (val) => {
+	filterMhs = async (val: any) => {
+		
 		var allMhs = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa/filterMhs`, {mhs: this.state.filter});
 		this.setState({allMhs: allMhs.data.filter});
 	}
 
-	async updateMhs(skipPage){
+	async updateMhs(skipPage: any){
 		var allMhs = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa`, {skip: skipPage});
 		this.setState({allMhs: allMhs.data.mhs, isLoading:false, pagination: {...this.state.pagination, maxPage: allMhs.data.max, skipPage: allMhs.data.skip, posPage:allMhs.data.page}});
 		console.log(this.state)
@@ -138,7 +139,7 @@ class Mahasiswa extends React.Component{
 					</thead>
 
 					<tbody>
-						{this.state.allMhs.map((val, index) => (
+						{this.state.allMhs.map((val: any, index: any) => (
 							<tr>
 								<td className={s.no}>{this.state.pagination.skipPage + 1 + index}</td>
 								<td className={s.nim}>{val.nim}</td>
@@ -149,12 +150,12 @@ class Mahasiswa extends React.Component{
 								<td className={s.alamat}>{val.alamat}</td>
 								<td className={s.notelp}>0{val.notelp}</td>
 								<td className={s.container_button}>
-									<Link className={s.link} to={{pathname:'/dashboard/mahasiswa/update', id:val._id}}>
+									<Link className={s.link} to={{pathname:'/dashboard/mahasiswa/update?id=' + val._id}}>
 										<button className={s.updateButton}>
 											<img src='/image/icons/update.svg' className={s.iconsButton} title='update' alt='update' />
 										</button>
 									</Link>
-									<Link className={s.link} onClick={() => this.setState({modal: { open:true, nama_mhs:val.nama , id_mhs:val._id }})}>
+									<Link to='#' className={s.link} onClick={() => this.setState({modal: { open:true, nama_mhs:val.nama , id_mhs:val._id }})}>
 										<button className={s.deleteButton}>
 											<img src='/image/icons/delete.svg' className={s.iconsButton} title='delete' alt='delete' />
 										</button>
@@ -204,9 +205,9 @@ class Mahasiswa extends React.Component{
 	}
 }
 
-const mapDispathToProps = dispatch => {
+const mapDispathToProps = (dispatch: any) => {
 	return {
-		changeNav : (nav) => dispatch({type:'change_navDashboard', nav:nav}),
+		changeNav : (nav: any) => dispatch({type:'change_navDashboard', nav:nav}),
 	}
 }
 

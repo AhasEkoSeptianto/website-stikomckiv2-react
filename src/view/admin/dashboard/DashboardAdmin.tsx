@@ -10,9 +10,6 @@ import Img_user from "./../../../asset/image/user/user.png";
 import IconNavbar from "./../../../asset/image/icons/navbar.png";
 import IconsCloceNav from "./../../../asset/image/icons/close.png";
 
-// component nav
-import NavLeft from "./comp_dashboard/navbar_left/navbarLeft.js";
-import NavRight from "./comp_dashboard/navbar_right/navbarRight.js";
 
 // material ui
 import { Grid } from '@mui/material';
@@ -21,13 +18,15 @@ import { Grid } from '@mui/material';
 import { Link } from "react-router-dom";
 
 // lib
-import { is_auth } from './../../../lib/is_auth';
+import { is_auth } from '../../../lib/is_auth';
 
 // redux
 import { connect } from 'react-redux'; 
+import NavbarLeft from "./comp_dashboard/navbar_left/navbarLeft";
+import NavbarRight from "./comp_dashboard/navbar_right/navbarRight";
 
-class dashboard extends React.Component {
-	constructor(props) {
+class DashboardAdmin extends React.Component<any, any>{
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			uri: this.props.match,
@@ -39,13 +38,13 @@ class dashboard extends React.Component {
 
 	_btnNavMobile = () => {
 		var nav = document.getElementById('nav_dashboard');
-		if (this.state.navMobileOpen) {
-			this.setState({navMobileOpen: false});
-			nav.setAttribute('class', 'w-1/2 fixed left-0 bg-white h-screen z-50');
-		} else {
-			this.setState({navMobileOpen: true});
-			nav.setAttribute('class', 'w-0 fixed left-0 bg-white overflow-hidden z-50');
-		}
+		// if (this.state.navMobileOpen) {
+		// 	this.setState({navMobileOpen: false});
+		// 	nav.setAttribute('class', 'w-1/2 fixed left-0 bg-white h-screen z-50');
+		// } else {
+		// 	this.setState({navMobileOpen: true});
+		// 	nav.setAttribute('class', 'w-0 fixed left-0 bg-white overflow-hidden z-50');
+		// }
 	};
 
 	_btnProfile = () => {
@@ -73,8 +72,8 @@ class dashboard extends React.Component {
 
 	}
 
-	componentDidMount() {
-		let isAuth = is_auth();
+	async componentDidMount() {
+		let isAuth = await is_auth();
 		isAuth ? console.log('user loggend') : this.props.history.push('/') ;
 		this.changeDeviceWidth();
 		window.addEventListener('resize', this.changeDeviceWidth);
@@ -95,7 +94,7 @@ class dashboard extends React.Component {
 						/>
 					</div>
 					{/* navbar kiri window */}
-					<NavLeft />
+					<NavbarLeft />
 				</Grid>
 
 				<Grid item sm={9} lg={10} className={this.state.isMobile ? 'w-full' : 'w-10/12' }>
@@ -148,10 +147,12 @@ class dashboard extends React.Component {
 						<Link
 							className={styles.link}
 							onClick={() => alert("fiture cooming soon")}
+							to='#'
 						>
 							Manage Account
 						</Link>
 						<Link
+							to='#'
 							className={styles.link}
 							onClick={() => this._logout()}
 						>
@@ -160,7 +161,7 @@ class dashboard extends React.Component {
 					</div>
 					{/* end comp untuk hover profile */}
 					{/* window untuk body bagian kanan window */}
-					<NavRight uri={this.state.uri} />
+					<NavbarRight uri={this.state.uri} />
 					{/* end window untuk body bagian kanan */}
 					{/* end component bagian kanan window */}
 				</Grid>
@@ -169,10 +170,10 @@ class dashboard extends React.Component {
 	}
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
 	return {
 		user: state.user,
 	}
 }
 
-export default connect(mapStateToProps, null)(dashboard);
+export default connect(mapStateToProps, null)(DashboardAdmin);

@@ -5,17 +5,17 @@ import styles from "./../../../../../../asset/css/admin/dashboard/pages/settings
 import { connect } from 'react-redux';
 
 // lib
-import { post } from './../../../../../../lib/axios';
-import { getCookies, setCookies } from './../../../../../../lib/cookie';
+import { post } from '../../../../../../lib/axios';
+import { getCookies, setCookies } from '../../../../../../lib/cookie';
 
 // react material ui
 import Modal from '@mui/material/Modal';
 import Backdrop from '@mui/material/Backdrop';
 import Fade from '@mui/material/Fade';
 
-class changeName extends React.Component{
+class changeName extends React.Component<any, any>{
 
-	constructor(props){
+	constructor(props: any){
 		super(props);
 		this.state = {
 			newName : null,
@@ -69,9 +69,9 @@ class changeName extends React.Component{
 	}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
 	return {
-		changeName : (user) => dispatch({type:'change_name', user:user})
+		changeName : (user: any) => dispatch({type:'change_name', user:user})
 	}
 }
 

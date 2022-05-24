@@ -13,19 +13,18 @@ import {
 import ScrollableAnchor from "react-scrollable-anchor";
 
 // mycss
-import s from "./../../asset/css/visi_misi_SI.module.css";
+import s from "./../../asset/css/tujuan_prodi_SI.module.css";
 
-// my nav
-import Nav from "./../../component/navbar/navbar.js";
 
 // react-router-dom link
 import { Link } from "react-router-dom";
 
 // my footer
-import Footer from "./../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer.js";
+import Navbar from "../../component/navbar/navbar";
 
-class visi_misi_SI extends React.Component {
-	constructor(props) {
+class tujuan_prodi_SI extends React.Component<any, any>{
+	constructor(props: any) {
 		super(props);
 		this.state = {
 			isOpen: [],
@@ -33,13 +32,13 @@ class visi_misi_SI extends React.Component {
 	}
 
 	componentDidMount() {
-		document.title = "visi misi TI";
+		document.title = "tujuan prodi TI";
 	}
 
 	render() {
 		return (
 			<Fragment>
-				<Nav />
+				<Navbar />
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>
@@ -63,68 +62,53 @@ class visi_misi_SI extends React.Component {
 										Home
 									</Link>
 									<Typography color="textPrimary">
-										Visi dan Misi SI
+										Tujuan prodi SI
 									</Typography>
 								</Breadcrumbs>
 								<div className={s.paperContent}>
 									<h2 className={s.contentheader}>
-										Visi Misi SI
+										Tujuan prodi SI
 									</h2>
 									<div className={s.contentmain}>
-										<h3>visi</h3>
-										<Container>
-											<p className={s.visi}>
-												Menjadi program studi sistem
-												informasi unggul yang adaptif,
-												kreatif dan inovatif dalam
-												bidang smart information systems
-												untuk menghasilkan lulusan yang
-												professional, bertaqwa dan
-												beretika pada tahun 2025.
-											</p>
-										</Container>
-									</div>
-									<div className={s.contentmain}>
-										<h3>misi</h3>
+										<h3>tujuan prodi SI adalah</h3>
 										<Container>
 											<ul className={s.listTujuan}>
 												<li className={s.li_tujuan}>
-													Menyelenggarakan sistem
-													pendidikan tinggi yang
-													berlandaskan pada
-													prefesionalisme, ketaqwaan
-													dan norma-norma etika yang
-													berlaku.
+													Menghasilkan lulusan yang
+													professional, bertaqwa dan
+													beretika.
 												</li>
 												<li className={s.li_tujuan}>
-													Menyelenggarakan pendidikan
-													tinggi berkualitas untuk
-													menghasilkan lulusan yang
-													berkualifikasi unggul dalam
+													Menghasilkan lulusan yang
+													kompeten dalam bidang smart
+													information systems dan
+													mampu menciptakan peluang
+													kerja.
+												</li>
+												<li className={s.li_tujuan}>
+													Menghasilkan teknologi
+													inovatif dan kreatif
+													berbasis penelitian dalam
 													bidang smart information
-													systems yang mampu bersaing
-													pada pasar profesional.
+													systems.
 												</li>
 												<li className={s.li_tujuan}>
-													Mengembangkan penelitian
-													dalam bidang smart
-													information systems yang
-													adaptif, kreatif dan
-													inovatif
+													Meningkatkan kualitas hidup
+													masyarakat melalui
+													pemanfaatan teknologi
+													informasi yang inovatif dan
+													kreatif yang berlandaskan
+													etika dan moral.{" "}
 												</li>
 												<li className={s.li_tujuan}>
-													Melaksanakan pengabdian
-													kepada masyarakat dalam
-													mengimplementasikan bidang
-													ilmu sistem informasi.
-												</li>
-												<li className={s.li_tujuan}>
-													Menjalin kerjasama dengan
-													instansi pemerintah dan
-													swasta pada tingkat nasional
-													dan internasional dalam
-													rangka adopsi perkembangan
-													ilmu dan teknologi serta
+													Terjalinnya link and match
+													antara program studi sistem
+													informasi dengan instansi
+													pemerintah dan swasta pada
+													tingkat nasional dan
+													internasional dalam rangka
+													adopsi perkembangan ilmu dan
+													teknologi serta
 													penerapannya.
 												</li>
 											</ul>
@@ -143,12 +127,12 @@ class visi_misi_SI extends React.Component {
 									<h4>Kategori</h4>
 									<ul className={s.ul_kategori}>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Berita
 											</Link>
 										</li>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Pengumuman
 											</Link>
 										</li>
@@ -158,12 +142,12 @@ class visi_misi_SI extends React.Component {
 									<h4>Pos-pos terbaru</h4>
 									<ul className={s.ul_kategori}>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Berita
 											</Link>
 										</li>
 										<li className={s.list_kategori}>
-											<Link className={s.link} href="#">
+											<Link className={s.link} to="#">
 												Pengumuman
 											</Link>
 										</li>
@@ -179,4 +163,4 @@ class visi_misi_SI extends React.Component {
 	}
 }
 
-export default visi_misi_SI;
+export default tujuan_prodi_SI;

@@ -1,18 +1,18 @@
-import Axios from 'axios';
+import Axios from 'axios'
 
-const get = async (url) => {
+const get = async (url: string) => {
 	
-	var resApi = [];
+	var resApi =  [] || null;
 
 	await Axios.get(url)
-		.then(res => resApi = res)
+		.then((res: any) => resApi = res)
 		.catch(err => resApi = err);
 
 	
 	return resApi;
 }
 
-const post = async (url, data) => {
+const post = async (url: any, data: any) => {
 	
 	var resApi = await Axios.post(url, data, {
 			headers : {

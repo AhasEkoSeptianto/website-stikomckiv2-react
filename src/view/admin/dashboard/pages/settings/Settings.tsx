@@ -8,7 +8,7 @@ import ChangeAccount from './form_setting/changeAccount';
 
 import { connect } from 'react-redux';
 
-class Settings extends React.Component {
+class Settings extends React.Component<any, any> {
 
 	Exit = () => {
 		this.props.history.push("/");
@@ -38,9 +38,9 @@ class Settings extends React.Component {
 	}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
 	return {
-		changeNav : (nav) => dispatch({type:'change_navDashboard', nav:nav}),
+		changeNav : (nav: any) => dispatch({type:'change_navDashboard', nav:nav}),
 	}
 }
 

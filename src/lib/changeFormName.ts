@@ -1,16 +1,16 @@
-const changeName = (name) => {
-	console.log(name)
+const changeName = (name: any) => {
+	
 	if (name.length >= 29) {
 		var resMaxName = maxLength(30, name);
 		return resMaxName;
 	}
 
 	var name = name.split(' ');
-	var resName = [];
+	let resName: any = [];
 	var space = "";
 
 	// menyimpan value jika ada space tertinggal diakhir, funsi lain dari trim()
-	var name = name.filter((el, index) => {
+	var name = name.filter((el: any, index: any) => {
 		if (el == "" && index != 0){
 			space = " ";
 		}
@@ -19,7 +19,7 @@ const changeName = (name) => {
 
 
 	// iterasi
-	name.forEach(val =>{
+	name.forEach((val: any) =>{
 		
 		// ubah string menjadi array
 		let arrVal = val.split(''); 
@@ -41,14 +41,14 @@ const changeName = (name) => {
 	return resName + space;
 }
 
-var maxLength = (max, name) => {
+var maxLength = (max: any, name: any) => {
 	let resName = name.split('');
 	resName = resName.splice( 0, max );
 	resName = resName.join('');
 	return resName;
 }
 
-var changeNumberPhone = (number) => {
+var changeNumberPhone = (number: any) => {
 	if (number.charAt(0) === "0") {
 
 		number = "";

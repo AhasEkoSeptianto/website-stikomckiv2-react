@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 // components
-import Header from "./../header/Header.js";
 
 // asset image
 import logoNav from "./../../asset/image/logo Stikom.jpeg";
@@ -19,6 +18,7 @@ import styles from "./navbar.module.css";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ViewHeadlineIcon from "@mui/icons-material/ViewHeadline";
+import Header from "../header/Header";
 
 function Navbar() {
 	// handle dropdown for dekstop mode
@@ -26,39 +26,39 @@ function Navbar() {
 
 	const handleChangeDropDownPerkuliahan = () => {
 		var togle = document.getElementById("toglePerguruan");
-		if (open_A === "none") {
-			togle.setAttribute("style", "display:block");
-			setDropDown_A("block");
-		} else if (open_A === "block") {
-			togle.setAttribute("style", "display:none");
-			setDropDown_A("none");
-		}
+		// if (open_A === "none") {
+		// 	togle.setAttribute("style", "display:block");
+		// 	setDropDown_A("block");
+		// } else if (open_A === "block") {
+		// 	togle.setAttribute("style", "display:none");
+		// 	setDropDown_A("none");
+		// }
 	};
 
 	const [open_B, setDropDown_B] = useState("none");
 
 	const handleChangeDropDownProgramTI = () => {
 		var togle = document.getElementById("togleProgramTI");
-		if (open_B === "none") {
-			togle.setAttribute("style", "display:block");
-			setDropDown_B("block");
-		} else if (open_B === "block") {
-			togle.setAttribute("style", "display:none");
-			setDropDown_B("none");
-		}
+		// if (open_B === "none") {
+		// 	togle.setAttribute("style", "display:block");
+		// 	setDropDown_B("block");
+		// } else if (open_B === "block") {
+		// 	togle.setAttribute("style", "display:none");
+		// 	setDropDown_B("none");
+		// }
 	};
 
 	const [open_C, setDropDown_C] = useState("none");
 
 	const handleChangeDropDownProgramSI = () => {
 		var togle = document.getElementById("togleProgramSI");
-		if (open_C === "none") {
-			togle.setAttribute("style", "display:block");
-			setDropDown_C("block");
-		} else if (open_C === "block") {
-			togle.setAttribute("style", "display:none");
-			setDropDown_C("none");
-		}
+		// if (open_C === "none") {
+		// 	togle.setAttribute("style", "display:block");
+		// 	setDropDown_C("block");
+		// } else if (open_C === "block") {
+		// 	togle.setAttribute("style", "display:none");
+		// 	setDropDown_C("none");
+		// }
 	};
 
 	// handle togle pada mode mobile
@@ -67,13 +67,13 @@ function Navbar() {
 
 	const togle_button_hp = () => {
 		let togle = document.getElementById("togle_mobile");
-		if (open_togle_mobile === "closed") {
-			togle.setAttribute("style", "display:block;");
-			set_togle_mobile("open");
-		} else if (open_togle_mobile === "open") {
-			togle.setAttribute("style", "display:none;");
-			set_togle_mobile("closed");
-		}
+		// if (open_togle_mobile === "closed") {
+		// 	togle.setAttribute("style", "display:block;");
+		// 	set_togle_mobile("open");
+		// } else if (open_togle_mobile === "open") {
+		// 	togle.setAttribute("style", "display:none;");
+		// 	set_togle_mobile("closed");
+		// }
 	};
 
 	return (
