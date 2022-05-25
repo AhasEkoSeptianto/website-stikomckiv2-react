@@ -8,24 +8,13 @@ import Footer from "../../component/footer/Footer.js";
 // Scrillable module
 import ScrollableAnchor from "react-scrollable-anchor";
 
-// slide js module
-// import { Splide, SplideSlide } from "@splidejs/react-splide";
-
-// image background splide js
-import bg1 from "./../../asset/image/background/bg1.jpeg";
-import bg2 from "./../../asset/image/background/bg2.jpeg";
-import bg3 from "./../../asset/image/background/bg3.jpeg";
-
 // mycss
 import s from "./../../asset/css/home.module.css";
 
-import { setCookies, getCookies } from "../../lib/cookie";
 import Navbar from "../../component/navbar/navbar";
 import { get } from "../../lib/axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
-import { Button, Paper } from "@mui/material";
 
 class Home extends React.Component {
   async componentDidMount() {
