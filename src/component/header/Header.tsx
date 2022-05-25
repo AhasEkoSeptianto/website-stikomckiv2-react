@@ -53,7 +53,6 @@ class Header extends React.Component<any, any>{
     return (
       <Fragment>
         <div className="bg-gray-100 border-b py-1">
-          <Button text='test' />
           <div className="flex items-center justify-between container mx-auto">
             <div className="flex items-center space-x-7">
               

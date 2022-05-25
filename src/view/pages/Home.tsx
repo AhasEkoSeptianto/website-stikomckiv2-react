@@ -10,7 +10,6 @@ import ScrollableAnchor from "react-scrollable-anchor";
 
 // slide js module
 // import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 // image background splide js
 import bg1 from "./../../asset/image/background/bg1.jpeg";
@@ -20,79 +19,95 @@ import bg3 from "./../../asset/image/background/bg3.jpeg";
 // mycss
 import s from "./../../asset/css/home.module.css";
 
-import { setCookies, getCookies } from '../../lib/cookie';
+import { setCookies, getCookies } from "../../lib/cookie";
 import Navbar from "../../component/navbar/navbar";
 import { get } from "../../lib/axios";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
+import { Button, Paper } from "@mui/material";
 
 class Home extends React.Component {
+  async componentDidMount() {
+    document.title = "Home";
 
-	async componentDidMount() {
+    let gets = get(`${process.env.REACT_APP_BASE_URL}api/mahasiswa`);
 
-		document.title = "Home";
-		
-		let gets = get(`${process.env.REACT_APP_BASE_URL}api/mahasiswa`)
-		
-		let visitor = await get(`${process.env.REACT_APP_BASE_URL}api/visitor`);
-		console.log(visitor)
-	}
+    let visitor = await get(`${process.env.REACT_APP_BASE_URL}api/visitor`);
+    console.log(visitor);
+  }
 
-	render() {
-		return (
-			<div className={s.containermPage}>
-				<Navbar />
-				<ScrollableAnchor id="main">
-					<div></div>
-				</ScrollableAnchor>
-				{/* <Splide
-					options={{
-						rewind: true,
-						autoplay: true,
-						interval: 10000,
-						gap: "1rem",
-					}}
-				>
-					<SplideSlide>
-						<div className={s.text_bg}>
-							<h2 className={s.text_bg_top}>Selamat datang</h2>
-							<h4 className={s.text_bg_bot}>
-								di Sekolah Tinggi Ilmu Komputer Cipta Karya
-								Informatika Kampus D
-							</h4>
-						</div>
-						<img
-							src={bg3}
-							alt=""
-							className={s.img_background}
-						></img>
-					</SplideSlide>
+  render() {
+    const settings = {
+      direction: "vertical",
+      slidesPerView: 1,
+      spaceBetween: 30,
+      mousewheel: true,
+      cssMode: true, // with this enabled, it works fine. Disabled, it does not
+      on: {
+        scroll: function () {
+          console.log("swiper scrolled");
+        },
+      },
+    };
 
-					<SplideSlide>
-						<div className={s.text_bg}>
-							<h2 className={s.text_bg_top}>Bem</h2>
-							<h4 className={s.text_bg_bot}>
-								Kegiatan mahasiswa di stikom cki sebagai badan
-								eksekutif mahasiswa
-							</h4>
-						</div>
-						<img
-							src={bg1}
-							alt=""
-							className={s.img_background}
-						/>
-					</SplideSlide>
-					<SplideSlide>
-						<img
-							src={bg2}
-							alt=""
-							className={s.img_background}
-						/>
-					</SplideSlide>
-				</Splide> */}
-				<Footer />
-			</div>
-		);
-	}
+    const responsive = {
+      superLargeDesktop: {
+        // the naming can be any, depends on you.
+        breakpoint: { max: 4000, min: 3000 },
+        items: 1,
+      },
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 1,
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 1,
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+      },
+    };
+
+    return (
+      <div className={s.containermPage}>
+        <Navbar />
+        <ScrollableAnchor id="main">
+          <div></div>
+        </ScrollableAnchor>
+
+        <Carousel
+          responsive={responsive}
+          infinite
+          autoPlay
+          transitionDuration={1}
+        >
+          <div className="bg-slider1 w-screen h-sliderImage bg-cover flex flex-col justify-center">
+            <div className="w-10/12 mx-auto text-white space-y-1">
+              <h2 className="bg-black bg-opacity-70 p-1 w-max text-2xl">Selamat datang</h2>
+              <h4 className="bg-black bg-opacity-70 p-1 w-max text-2xl">
+                di Sekolah Tinggi Ilmu Komputer Cipta Karya Informatika Kampus D
+              </h4>
+            </div>
+          </div>
+          <div className="bg-slider2 w-screen h-sliderImage bg-cover flex flex-col justify-center">
+            <div className="w-10/12 mx-auto text-white space-y-1">
+              <h2 className="bg-black bg-opacity-70 p-1 w-max text-2xl">BEM</h2>
+              <h4 className="bg-black bg-opacity-70 p-1 w-max text-2xl">
+                Kegiatan mahasiswa di stikom cki sebagai badan eksekutif
+                mahasiswa
+              </h4>
+            </div>
+          </div>
+          <div className="bg-slider3 w-screen h-sliderImage bg-cover"></div>
+        </Carousel>
+
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default Home;
