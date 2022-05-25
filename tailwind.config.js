@@ -10,6 +10,10 @@ module.exports = {
         'slider1': "url('src/asset/image/background/bg1.jpeg')",
         'slider2': "url('src/asset/image/background/bg2.jpeg')",
         'slider3': "url('src/asset/image/background/bg3.jpeg')",
+      },
+      transitionProperty: {
+        'height': 'height',
+        'width': 'width'
       }
     },
   },
