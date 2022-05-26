@@ -2,8 +2,6 @@ import React from "react";
 
 // my nav
 
-// myfooter
-import Footer from "../../component/footer/Footer.js";
 
 // Scrillable module
 import ScrollableAnchor from "react-scrollable-anchor";
@@ -15,6 +13,7 @@ import Navbar from "../../component/navbar/navbar";
 import { get } from "../../lib/axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Footer from "src/component/footer/Footer";
 
 class Home extends React.Component {
   async componentDidMount() {

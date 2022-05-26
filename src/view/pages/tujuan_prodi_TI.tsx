@@ -20,7 +20,7 @@ import s from "./../../asset/css/tujuan_prodi_TI.module.css";
 import { Link } from "react-router-dom";
 
 // my footer
-import Footer from "../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer";
 import Navbar from "src/component/navbar/navbar";
 
 class tujuan_prodi_TI extends React.Component<any, any>{

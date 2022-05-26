@@ -23,7 +23,7 @@ import { Link } from "react-router-dom";
 import img_kalender_akademik from "./../../asset/image/Kalender_Akademik_2019-2020_Baru.jpeg";
 
 // my footer
-import Footer from "../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer";
 import Navbar from "src/component/navbar/navbar";
 
 class kalender_akademik extends React.Component {

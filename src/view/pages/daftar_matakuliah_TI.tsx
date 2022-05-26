@@ -26,7 +26,7 @@ import s from "./../../asset/css/daftar_matakuliah_TI.module.css";
 import { Link } from "react-router-dom";
 
 // my footer
-import Footer from "../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer";
 
 // data mata kuliah TI
 import Data from "../../component/data/data_daftar_matkul_TI.js";

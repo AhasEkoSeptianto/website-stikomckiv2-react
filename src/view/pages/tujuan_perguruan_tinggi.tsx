@@ -20,7 +20,7 @@ import s from "./../../asset/css/tujuan_perguruan_tinggi.module.css";
 import { Link } from "react-router-dom";
 
 // my footer
-import Footer from "../../component/footer/Footer.js";
+import Footer from "../../component/footer/Footer";
 import Navbar from "../../component/navbar/navbar";
 
 class tujuan_perguruan_tinggi extends React.Component<any, any>{
