@@ -104,7 +104,7 @@ function Navbar() {
                     <Link to={dropdown_item.link}>
                       <p
                         key={idx}
-                        className="bg-white p-2 text-sm cursor-pointer hover:bg-gray-100"
+                        className="bg-white p-2 text-sm cursor-pointer hover:bg-gray-100 border"
                       >
                         {dropdown_item.label}
                       </p>
