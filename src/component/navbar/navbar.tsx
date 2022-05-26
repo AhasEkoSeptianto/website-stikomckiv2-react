@@ -54,7 +54,7 @@ function Navbar() {
   ];
 
   return (
-    <Fragment>
+    <div className="sticky top-0 bg-white shadow z-50">
       <Header />
       <div className="container mx-auto flex items-center justify-between py-1">
         <Link to="/" className="flex items-center space-x-2">
@@ -117,7 +117,7 @@ function Navbar() {
           
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 }
 

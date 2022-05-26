@@ -188,7 +188,7 @@ class daftar_matakuliah_SI extends React.Component {
 																					<TableCell
 																						align="left"
 																						className={
-																							s.table_font
+																							`${s.table_font} whitespace-nowrap`
 																						}
 																					>
 																						{
