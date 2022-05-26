@@ -16,22 +16,25 @@ class Footer extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+	this.state = {
+		contactUsForm: {
+			name: '',
+			email: '',
+			message: ''
+		}
+	}
   }
 
   handleSubmit(event: any) {
     event.preventDefault();
     console.log("yep");
-    Axios.post("https://website-stikomcki.herokuapp.com/call-us", data, {
+    Axios.post("https://website-stikomcki.herokuapp.com/call-us", this.state.contactUsForm, {
       headers: {
         "Content-Type": "application/json",
       },
     })
       .then((res) => {
-        console.log("sucsess");
         alert("msg sucees");
-        document.getElementById("name").value = "";
-        document.getElementById("email").value = "";
-        document.getElementById("msg").value = "";
       })
       .catch((err) => {
         console.log(err);
@@ -39,6 +42,15 @@ class Footer extends React.Component<any, any> {
   }
 
   render() {
+
+	const { contactUsForm } = this.state
+
+	const HandleChangeForm = (e: any) => {
+		this.setState({ contactUsForm: { ...contactUsForm, [e.target.name]: e.target.value } })
+	}
+
+	console.log(contactUsForm)
+
     return (
       <div className={s.footerContainer}>
         <Grid container spacing={0}>
@@ -136,6 +148,7 @@ class Footer extends React.Component<any, any> {
                       label="Name"
                       variant="standard"
                       required
+					  onChange={HandleChangeForm}
                     />
                   </div>
                   <div className={s.email}>
@@ -146,6 +159,7 @@ class Footer extends React.Component<any, any> {
                       type="email"
                       name="email"
                       variant="standard"
+					  onChange={HandleChangeForm}
                       required
                     />
                   </div>
@@ -154,11 +168,12 @@ class Footer extends React.Component<any, any> {
                   <CreateRoundedIcon />
                   <TextareaAutosize
                     id="msg"
-                    name="msg"
+                    name="message"
                     className={`${s.textarea_form} border border-gray-400`}
                     placeholder="massage"
                     maxRows={4}
                     minRows={4}
+					onChange={HandleChangeForm}
                     required
                   ></TextareaAutosize>
                 </div>
