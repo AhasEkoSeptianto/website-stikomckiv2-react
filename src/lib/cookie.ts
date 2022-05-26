@@ -20,7 +20,7 @@ const getAllCookies = () => {
 
 const removeCookies = (cookieName: string) => {
 	let rescookies = cookies.remove(cookieName);
-	return removeCookies;
+	return rescookies;
 }
 
 

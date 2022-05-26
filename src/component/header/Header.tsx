@@ -50,6 +50,13 @@ class Header extends React.Component<any, any>{
       this.setState({ ...this.state, popMenu: null });
     };
 
+    const Logout = () => {
+      removeCookies('auth-token')
+      removeCookies('user')
+      console.log('here')
+      window.location.reload()
+    }
+
     return (
       <Fragment>
         <div className="bg-gray-100 border-b py-1">
@@ -134,12 +141,13 @@ class Header extends React.Component<any, any>{
                         <span>Admin Dashboard</span>
                       </Link>
                     </MenuItem>
-                    <MenuItem>
-                      <LogoutIcon
-                        className="mr-3"
-                        sx={{ width: 20, height: 20 }}
-                      />
-                      <span>Logout</span>
+                    <MenuItem onClick={Logout}>
+                      
+                        <LogoutIcon
+                          className="mr-3"
+                          sx={{ width: 20, height: 20 }}
+                        />
+                        <span>Logout</span>
                     </MenuItem>
                   </Fragment>
                 ) : (
