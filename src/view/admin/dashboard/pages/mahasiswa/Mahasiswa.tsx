@@ -39,7 +39,7 @@ class Mahasiswa extends React.Component<any, any>{
 	deleteMhs = async () => {
 
 		this.setState({modal: { ...this.state.modal, isLoading: true }});
-		var posts = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa/deleteMhs`, {id: this.state.modal.id_mhs});
+		var posts = await post(`${process.env.REACT_APP_ENP_BE}api/mahasiswa/deleteMhs`, {id: this.state.modal.id_mhs});
 		this.setState({modal: {...this.state.modal, open:false, isLoading: false}});
 		this.updateMhs(false);
 	}
@@ -68,12 +68,12 @@ class Mahasiswa extends React.Component<any, any>{
 
 	filterMhs = async (val: any) => {
 		
-		var allMhs = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa/filterMhs`, {mhs: this.state.filter});
+		var allMhs = await post(`${process.env.REACT_APP_ENP_BE}api/mahasiswa/filterMhs`, {mhs: this.state.filter});
 		this.setState({allMhs: allMhs.data.filter});
 	}
 
 	async updateMhs(skipPage: any){
-		var allMhs = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa`, {skip: skipPage});
+		var allMhs = await post(`${process.env.REACT_APP_ENP_BE}api/mahasiswa`, {skip: skipPage});
 		this.setState({allMhs: allMhs.data.mhs, isLoading:false, pagination: {...this.state.pagination, maxPage: allMhs.data.max, skipPage: allMhs.data.skip, posPage:allMhs.data.page}});
 		console.log(this.state)
 	}

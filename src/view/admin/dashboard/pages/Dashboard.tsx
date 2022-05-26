@@ -3,7 +3,6 @@ import React from "react";
 // css
 import s from "./../../../../asset/css/admin/dashboard/Dashboard.module.css";
 
-import Chart from './cartjs/chart.js';
 
 // react material ui
 import { Grid, Card } from '@mui/material'; 
@@ -11,12 +10,12 @@ import { Grid, Card } from '@mui/material';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
-// lib
-import { get, post } from '../../../../lib/axios.js';
 
 import { connect } from 'react-redux';
+import { get, post } from "src/lib/axios";
+import MyChart from "./cartjs/chart";
 
-class Dashboard extends React.Component<any, any> {
+class DashboardPage extends React.Component<any, any> {
 
 	constructor(props: any){
 		super(props);
@@ -31,17 +30,18 @@ class Dashboard extends React.Component<any, any> {
 	async componentDidMount(){
 
 		this.props.changeNav(this.props.location.pathname);
+		
 
-
-		let Visitor: any = await get(`${process.env.REACT_APP_BASE_URL}api/getvisitor`);
+		let Visitor: any = await get(`${process.env.REACT_APP_ENP_BE}api/getvisitor`);
 		this.setState({visitor: Visitor.data.visitor});
 
-		let Mahasiswa = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa`, { skip: 0 });
+		let Mahasiswa = await post(`${process.env.REACT_APP_ENP_BE}api/mahasiswa`, { skip: 0 });
 		this.setState({mahasiswa: Mahasiswa.data.allMhs.length });
 
 	}
 
 	render() {
+
 		return (
 			<Grid container spacing={0} className='flex p-2 h-full'>
 				<Grid item xs={12} lg={6}>
@@ -73,7 +73,7 @@ class Dashboard extends React.Component<any, any> {
 				</Grid>
 
 				<Grid item xs={12} lg={8}>
-					<Chart />
+					<MyChart />
 				</Grid>
 
 				<Grid item xs={12} lg={4}>
@@ -91,4 +91,4 @@ const mapDispatchToProps = (dispatch: any) => {
 	}
 }
 
-export default connect(null, mapDispatchToProps)(Dashboard);
+export default connect(null, mapDispatchToProps)(DashboardPage);

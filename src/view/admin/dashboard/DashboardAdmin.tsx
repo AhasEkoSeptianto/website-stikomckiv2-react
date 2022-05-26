@@ -1,179 +1,231 @@
-import React from "react";
-
-// mycss
-import styles from "./../../../asset/css/admin/dashboard.module.css";
-
-// user image
-import Img_user from "./../../../asset/image/user/user.png";
-
-// icons
-import IconNavbar from "./../../../asset/image/icons/navbar.png";
-import IconsCloceNav from "./../../../asset/image/icons/close.png";
-
-
+import React, { Fragment } from "react";
 // material ui
-import { Grid } from '@mui/material';
-
-// router
-import { Link } from "react-router-dom";
+import { Avatar, Divider, Grid, Icon, IconButton, Menu, MenuItem } from "@mui/material";
 
 // lib
-import { is_auth } from '../../../lib/is_auth';
+import { is_auth } from "../../../lib/is_auth";
 
 // redux
-import { connect } from 'react-redux'; 
+import { connect } from "react-redux";
 import NavbarLeft from "./comp_dashboard/navbar_left/navbarLeft";
 import NavbarRight from "./comp_dashboard/navbar_right/navbarRight";
 
-class DashboardAdmin extends React.Component<any, any>{
-	constructor(props: any) {
-		super(props);
-		this.state = {
-			uri: this.props.match,
-			isMobile: false,
-			navMobileOpen: false,
-			profileClick: false,
-		};
-	}
+import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
+import SchoolIcon from "@mui/icons-material/School";
+import CastForEducationIcon from "@mui/icons-material/CastForEducation";
+import SettingsIcon from "@mui/icons-material/Settings";
+import ListItemIcon from '@mui/material/ListItemIcon';
+import LogoutIcon from '@mui/icons-material/Logout';
 
-	_btnNavMobile = () => {
-		var nav = document.getElementById('nav_dashboard');
-		// if (this.state.navMobileOpen) {
-		// 	this.setState({navMobileOpen: false});
-		// 	nav.setAttribute('class', 'w-1/2 fixed left-0 bg-white h-screen z-50');
-		// } else {
-		// 	this.setState({navMobileOpen: true});
-		// 	nav.setAttribute('class', 'w-0 fixed left-0 bg-white overflow-hidden z-50');
-		// }
-	};
 
-	_btnProfile = () => {
-		this.state.profileClick
-			? this.setState({ profileClick: false })
-			: this.setState({ profileClick: true });
-	};
+import { getCookies, removeCookies } from "src/lib/cookie";
+import { changeName, FormatName } from "src/lib/changeFormName";
 
-	_logout = () => {
-		this.props.history.push("/");
-	};
+import LogoStikom from "src/asset/image/logo Stikom.png";
+import { Link } from "react-router-dom";
 
-	changeDeviceWidth = () => {
-		let nav = document.getElementById('nav_dashboard');
-		let height = window.innerHeight;
-		let width = window.innerWidth;
+class DashboardAdmin extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      uri: this.props.match,
+      anchorEl: null
+    };
+  }
 
-		console.log(width);
+  changeDeviceWidth = () => {
+    let nav = document.getElementById("nav_dashboard");
+    let height = window.innerHeight;
+    let width = window.innerWidth;
 
-		if (width < 600) {
-			this.setState({isMobile: true});
-		} else {
-			this.setState({isMobile: false});
-		}
+    console.log(width);
 
-	}
+    if (width < 600) {
+      this.setState({ isMobile: true });
+    } else {
+      this.setState({ isMobile: false });
+    }
+  };
 
-	async componentDidMount() {
-		let isAuth = await is_auth();
-		isAuth ? console.log('user loggend') : this.props.history.push('/') ;
-		this.changeDeviceWidth();
-		window.addEventListener('resize', this.changeDeviceWidth);
+  async componentDidMount() {
+    let isAuth = await is_auth();
+    isAuth ? console.log("user loggend") : this.props.history.push("/");
+    this.changeDeviceWidth();
+    window.addEventListener("resize", this.changeDeviceWidth);
+  }
 
-	}
+  render() {
+    const MenuList = [
+      {
+        label: "Dashboard",
+        icon: <DashboardIcon sx={{ width: 25, height: 25 }} />,
+        link: "/dashboard",
+      },
+      {
+        label: "Berita",
+        icon: <NewspaperIcon sx={{ width: 25, height: 25 }} />,
+        link: "/dashboard/berita",
+      },
+      {
+        label: "Mahasiswa",
+        icon: <SchoolIcon sx={{ width: 25, height: 25 }} />,
+        link: "/dashboard/mahasiswa",
+      },
+      {
+        label: "Dosen",
+        icon: <CastForEducationIcon sx={{ width: 25, height: 25 }} />,
+        link: "/dashboard/dosen",
+      },
+      {
+        label: "Setting",
+        icon: <SettingsIcon sx={{ width: 25, height: 25 }} />,
+        link: "/dashboard/settings",
+      },
+    ];
 
-	render() {
-		return (
-			<Grid container spacing={0} className='h-full'>
-				<Grid item sm={3} lg={2} id='nav_dashboard' className={this.state.isMobile ? 'fixed w-0 overflow-hidden left-0 bg-white h-screen z-50' : 'static border-r border-gray-100'}>
-					<div className='bg-blue-300 flex justify-end'>
-						<img
-							alt="icons"
-							src={IconsCloceNav}
-							className={this.state.isMobile ? 'w-14 p-4 cursor-pointer' : 'w-0'}
-							id='icon_nav'
-							onClick={() => this._btnNavMobile()}
-						/>
-					</div>
-					{/* navbar kiri window */}
-					<NavbarLeft />
-				</Grid>
+    const open = Boolean(this.state.anchorEl);
+    
+    const HandleClickPopup = (event: any) => {
+      this.setState({ ...this.state, anchorEl: event.currentTarget })
+    };
 
-				<Grid item sm={9} lg={10} className={this.state.isMobile ? 'w-full' : 'w-10/12' }>
-					{/* component bagian kanan window */}
-					<div className={`${styles.comp_rightTop}`}>
-						{/* bagian awal headaer kanan */}
-						<div className={styles.cont_headerLeft}>
-							<img
-								alt="icons"
-								src={IconNavbar}
-								className={this.state.isMobile ? 'h-1/2 p-1 ml-3 cursor-pointer' : 'h-0'}
-								onClick={() => this._btnNavMobile()}
-							/>
-						</div>
-						{/* end bagian awal headaer kanan  */}
-						{/* bagian akhir header kanan */}
-						<div className={styles.cont_headerRight}>
-							<input
-								type="text"
-								className={styles.input_form}
-								placeholder="search for.."
-							/>
-							<img
-								alt="icons"
-								src={Img_user}
-								className={
-									this.state.profileClick
-										? styles.iconsProfile_active
-										: styles.iconsProfile_notActive
-								}
-								onClick={() => this._btnProfile()}
-							/>
-						</div>
-						{/* end bagian akhir kanan */}
-					</div>
-					{/* component untuk hover profile */}
-					<div
-						className={
-							this.state.profileClick
-								? styles.comp_hoverProfile_active
-								: styles.comp_hoverProfile_notActive
-						}
-					>
-						<img
-							alt="icons"
-							src={Img_user}
-							className={styles.iconsImage_hover}
-						/>
-						<h4>{this.props.user}</h4>
-						<Link
-							className={styles.link}
-							onClick={() => alert("fiture cooming soon")}
-							to='#'
-						>
-							Manage Account
-						</Link>
-						<Link
-							to='#'
-							className={styles.link}
-							onClick={() => this._logout()}
-						>
-							Exit
-						</Link>
-					</div>
-					{/* end comp untuk hover profile */}
-					{/* window untuk body bagian kanan window */}
-					<NavbarRight uri={this.state.uri} />
-					{/* end window untuk body bagian kanan */}
-					{/* end component bagian kanan window */}
-				</Grid>
-			</Grid>
-		);
-	}
+    const HandleClosePopup = () => {
+      this.setState({ ...this.state, anchorEl: null })
+    };
+
+    const Logout = () => {
+      removeCookies('auth-token');
+      removeCookies('user');
+      window.location.href = '/'
+    }
+
+    return (
+      <div className="grid grid-cols-12">
+        <div className="col-span-2 min-h-screen bg-gray-800">
+          <div className="p-2 flex items-center space-x-2 mb-5">
+            <Avatar sx={{ width: 50, height: 50 }}>
+              <PersonRoundedIcon sx={{ fontSize: 50 }} />
+            </Avatar>
+            <div>
+              <p className="font-medium text-white">
+                {FormatName(getCookies("user"))}
+              </p>
+            </div>
+          </div>
+
+          <Divider />
+
+          <div className="space-y-1 border-t">
+            {MenuList.map((item, idx) => (
+              <Link
+                to={item.link + ""}
+                className="flex items-center p-2 space-x-2 hover:bg-blue-400 text-gray-100 font-medium cursor-pointer"
+              >
+                {item.icon}
+                <p>{item.label}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+        <div className="col-span-10">
+          <div className="w-full flex items-center justify-between bg-blue-500 h-14">
+            <div className="flex items-center px-2">
+              <img src={LogoStikom} className="w-12" />
+              <div className="space-y-0.5">
+                <h4
+                  className="text-sm font-bold p-0.5"
+                  style={{ color: "red", backgroundColor: "rgb(0,0,0,0.5)" }}
+                >
+                  Sekolah Tinggi Ilmu Komputer
+                </h4>
+                <h4
+                  className="text-blue-400 text-sm font-bold p-0.5 text-blue-100"
+                  style={{ backgroundColor: "rgb(0,0,0,0.5)" }}
+                >
+                  Cipta Karya Informatika Kampus.D
+                </h4>
+              </div>
+            </div>
+            <div className="flex items-center space-x-3 px-2 cursor-pointer">
+              <p className="text-white underline">
+                {FormatName(getCookies("user"))}
+              </p>
+              <IconButton
+                onClick={HandleClickPopup}
+              >
+                <Avatar sx={{ width: 30, height: 30 }}>
+                  <PersonRoundedIcon sx={{ fontSize: 30 }} />
+                </Avatar>
+              </IconButton>
+              <Menu
+                anchorEl={this.state.anchorEl}
+                id="account-menu"
+                open={open}
+                onClose={HandleClosePopup}
+                PaperProps={{
+                  elevation: 0,
+                  sx: {
+                    overflow: "visible",
+                    filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                    mt: 1.5,
+                    "& .MuiAvatar-root": {
+                      width: 32,
+                      height: 32,
+                      ml: -0.5,
+                      mr: 1,
+                    },
+                    "&:before": {
+                      content: '""',
+                      display: "block",
+                      position: "absolute",
+                      top: 0,
+                      right: 14,
+                      width: 10,
+                      height: 10,
+                      bgcolor: "background.paper",
+                      transform: "translateY(-50%) rotate(45deg)",
+                      zIndex: 0,
+                    },
+                  },
+                }}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              >
+                <MenuItem>
+                  <Avatar /> Profile
+                </MenuItem>
+                <MenuItem>
+                  <Avatar /> My account
+                </MenuItem>
+                <Divider />
+                <MenuItem>
+                  <ListItemIcon>
+                    <SettingsIcon fontSize="small" />
+                  </ListItemIcon>
+                  Settings
+                </MenuItem>
+                <MenuItem onClick={Logout}>
+                  <ListItemIcon>
+                    <LogoutIcon fontSize="small" />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              </Menu>
+            </div>
+          </div>
+          <NavbarRight />
+        </div>
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = (state: any) => {
-	return {
-		user: state.user,
-	}
-}
+  return {
+    user: state.user,
+  };
+};
 
 export default connect(mapStateToProps, null)(DashboardAdmin);

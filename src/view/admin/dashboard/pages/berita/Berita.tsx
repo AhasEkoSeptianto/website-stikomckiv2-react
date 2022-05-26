@@ -57,10 +57,10 @@ class Master extends React.Component<any, any> {
 		const formData = new FormData();
 		formData.append("file", this.state.form.file);
 
-		await post(`${process.env.REACT_APP_BASE_URL}api/broadcast/addImage`, formData)
+		await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/addImage`, formData)
 			.then(async (res) => {
 				if (res.data.status === true) {
-					await post(`${process.env.REACT_APP_BASE_URL}api/broadcast/addNews`, {
+					await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/addNews`, {
 						judul: this.state.form.judul,
 						isiText: this.state.form.textIsi,
 						imgUrl: res.data.path,
@@ -76,7 +76,7 @@ class Master extends React.Component<any, any> {
 
 	_generatedList = async () => {
 		await Axios.get(
-			`${process.env.REACT_APP_BASE_URL}api/broadcast/allData`
+			`${process.env.REACT_APP_ENP_BE}api/broadcast/allData`
 		)
 			.then((res) => {
 				this.setState({ listNews: res.data.reverse() })
@@ -86,7 +86,7 @@ class Master extends React.Component<any, any> {
 
 	deleteNews = async () => {
 		this.setState({ modal: { ...this.state.modal, open: false } });
-		let resPost = await post(`${process.env.REACT_APP_BASE_URL}api/broadcast/delete`, { id: this.state.modal.id, token: cookie.get('auth-token') })
+		let resPost = await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/delete`, { id: this.state.modal.id, token: cookie.get('auth-token') })
 		if (resPost.data.result === 'success'){
 			this._generatedList();
 		}
@@ -197,7 +197,7 @@ class Master extends React.Component<any, any> {
 				        	<div className='flex justify-center items-center h-screen'>
 					        	<div className='w-10/12 lg:w-1/3 mx-auto bg-white p-5 overflow-y-auto h-full'>
 					        		<p className='text-2xl text-center font-bold'>{this.state.modal.title}</p>
-					        		<img src={`${process.env.REACT_APP_BASE_URL + this.state.modal.image}`} className='w-11/12 mx-auto my-5' />
+					        		<img src={`${process.env.REACT_APP_ENP_BE + this.state.modal.image}`} className='w-11/12 mx-auto my-5' />
 					        		<p className='mb-5'>{this.state.modal.content}</p>
 
 					        		<div className='flex justify-end my-5'>
@@ -223,7 +223,7 @@ class Master extends React.Component<any, any> {
 								() => this.setState({modal: {id:val._id, title: val.title, image: val.imageUrl, content: val.content, open: true }})
 								}>
 								<h1 className='overflow-hidden text-lg lg:text-2xl font-bold text-center'>{val.title}</h1>
-								<img src={`${process.env.REACT_APP_BASE_URL + val.imageUrl}`} className='w-11/12 mx-auto my-5' />
+								<img src={`${process.env.REACT_APP_ENP_BE + val.imageUrl}`} className='w-11/12 mx-auto my-5' />
 								<p className='max-h-20 text-sm'>{val.content}</p>
 							</Card>
 						))}

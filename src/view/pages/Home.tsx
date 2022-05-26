@@ -19,9 +19,9 @@ class Home extends React.Component {
   async componentDidMount() {
     document.title = "Home";
 
-    let gets = get(`${process.env.REACT_APP_BASE_URL}api/mahasiswa`);
+    let gets = get(`${process.env.REACT_APP_ENP_BE}api/mahasiswa`);
 
-    let visitor = await get(`${process.env.REACT_APP_BASE_URL}api/visitor`);
+    let visitor = await get(`${process.env.REACT_APP_ENP_BE}api/visitor`);
     console.log(visitor);
   }
 

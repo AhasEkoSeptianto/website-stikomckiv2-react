@@ -45,7 +45,7 @@ class updateMhs extends React.Component<any, any>{
 
 	submitForm = async () => {
 
-		var posts = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa/updateMhs`, {
+		var posts = await post(`${process.env.REACT_APP_ENP_BE}api/mahasiswa/updateMhs`, {
 			id: this.state.form_id,
 			nama: this.state.form_nama,
 			jurusan: this.state.form_jurusan,
@@ -65,7 +65,7 @@ class updateMhs extends React.Component<any, any>{
 			this.props.history.push('/dashboard/mahasiswa')
 		}
 
-		var updateMhs = await post(`${process.env.REACT_APP_BASE_URL}api/mahasiswa/findMhs`, {id: this.props.location.id});
+		var updateMhs = await post(`${process.env.REACT_APP_ENP_BE}api/mahasiswa/findMhs`, {id: this.props.location.id});
 
 		this.setState({
 			form_id: updateMhs.data.mahasiswa[0]._id,

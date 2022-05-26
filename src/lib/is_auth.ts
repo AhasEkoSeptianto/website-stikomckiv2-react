@@ -9,7 +9,7 @@ var is_auth = async () => {
 		}
 
 		var resAuth = await Axios.post(
-			`${process.env.REACT_APP_BASE_URL}api/is-auth`, {
+			`${process.env.REACT_APP_ENP_BE}api/is-auth`, {
 			 token:token
 			},
 		).then(res => {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Chart, registerables, ChartType } from 'chart.js';
+import { get } from 'src/lib/axios';
 
-import { get } from '../../../../../lib/axios.js';
 
 
-class chart extends React.Component<any, any>{
+class MyChart extends React.Component<any, any>{
 
         async componentDidMount(){
-
-            var getMhs: any = await get(`${process.env.REACT_APP_BASE_URL}api/mhs-statistik`);
+            
+            var getMhs: any = await get(`${process.env.REACT_APP_ENP_BE}api/mhs-statistik`);
 
 
             var crnYears = new Date().getFullYear(); 
@@ -63,4 +63,4 @@ class chart extends React.Component<any, any>{
     }
 }
 
-export default chart;
+export default MyChart;
