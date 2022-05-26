@@ -21,6 +21,7 @@ import { Link } from "react-router-dom";
 // my footer
 import Footer from "../../component/footer/Footer";
 import Navbar from "src/component/navbar/navbar";
+import FastMenu from "src/component/molecules/user/fastMenu";
 
 class visi_misi_TI extends React.Component<any, any>{
 	constructor(props: any) {
@@ -41,7 +42,7 @@ class visi_misi_TI extends React.Component<any, any>{
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>
-				<div className={s.container}>
+				<div className='container mx-auto my-10'>
 					<Grid container spacing={5}>
 						<Grid item sm={8}>
 							<Paper
@@ -143,42 +144,7 @@ class visi_misi_TI extends React.Component<any, any>{
 							</Paper>
 						</Grid>
 						<Grid item sm={3}>
-							<Paper
-								className={s.paperKategory}
-								variant="outlined"
-								square
-							>
-								<div className={s.kategori}>
-									<h4>Kategori</h4>
-									<ul className={s.ul_kategori}>
-										<li className={s.list_kategori}>
-											<Link className={s.link} to="#">
-												Berita
-											</Link>
-										</li>
-										<li className={s.list_kategori}>
-											<Link className={s.link} to="#">
-												Pengumuman
-											</Link>
-										</li>
-									</ul>
-								</div>
-								<div className={s.berita_terbaru}>
-									<h4>Pos-pos terbaru</h4>
-									<ul className={s.ul_kategori}>
-										<li className={s.list_kategori}>
-											<Link className={s.link} to="#">
-												Berita
-											</Link>
-										</li>
-										<li className={s.list_kategori}>
-											<Link className={s.link} to="#">
-												Pengumuman
-											</Link>
-										</li>
-									</ul>
-								</div>
-							</Paper>
+							<FastMenu />
 						</Grid>
 					</Grid>
 				</div>

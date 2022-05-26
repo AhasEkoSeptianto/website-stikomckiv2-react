@@ -31,6 +31,7 @@ import Footer from "../../component/footer/Footer";
 // data mata kuliah TI
 import Data from "../../component/data/data_daftar_matkul_TI.js";
 import Navbar from "src/component/navbar/navbar";
+import FastMenu from "src/component/molecules/user/fastMenu";
 
 class daftar_matakuliah_TI extends React.Component<any, any>{
 	constructor(props: any) {
@@ -51,7 +52,7 @@ class daftar_matakuliah_TI extends React.Component<any, any>{
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>
-				<div className={s.container}>
+				<div className='container mx-auto my-10'>
 					<Grid container spacing={5}>
 						<Grid item sm={8}>
 							<Paper
@@ -301,58 +302,7 @@ class daftar_matakuliah_TI extends React.Component<any, any>{
 							</Paper>
 						</Grid>
 						<Grid item sm={3}>
-							<Paper
-								className={s.paperKategory}
-								variant="outlined"
-								square
-							>
-								<div className={s.kategori}>
-									<h4>Kategori</h4>
-									<ul className={s.ul_kategori}>
-										<li className={s.list_kategori}>
-											<Link
-												className={s.link}
-												href="#"
-												to="#"
-											>
-												Berita
-											</Link>
-										</li>
-										<li className={s.list_kategori}>
-											<Link
-												className={s.link}
-												href="#"
-												to="#"
-											>
-												Pengumuman
-											</Link>
-										</li>
-									</ul>
-								</div>
-								<div className={s.berita_terbaru}>
-									<h4>Pos-pos terbaru</h4>
-									<ul className={s.ul_kategori}>
-										<li className={s.list_kategori}>
-											<Link
-												className={s.link}
-												href="#"
-												to="#"
-											>
-												Berita
-											</Link>
-										</li>
-										<li className={s.list_kategori}>
-											<Link
-												className={s.link}
-												href="#"
-												to="#"
-											>
-												Pengumuman
-											</Link>
-										</li>
-									</ul>
-								</div>
-							</Paper>
+							<FastMenu />
 						</Grid>
 					</Grid>
 				</div>
