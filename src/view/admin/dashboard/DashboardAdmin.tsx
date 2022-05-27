@@ -18,6 +18,7 @@ import CastForEducationIcon from "@mui/icons-material/CastForEducation";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LogoutIcon from '@mui/icons-material/Logout';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 
 import { getCookies, removeCookies } from "src/lib/cookie";
@@ -62,6 +63,11 @@ class DashboardAdmin extends React.Component<any, any> {
         label: "Dashboard",
         icon: <DashboardIcon sx={{ width: 25, height: 25 }} />,
         link: "/dashboard",
+      },
+      {
+        label: 'Admin',
+        icon: <SupervisorAccountIcon sx={{ width: 25, height: 25 }} />,
+        link: '/dashboard/admin'
       },
       {
         label: "Berita",

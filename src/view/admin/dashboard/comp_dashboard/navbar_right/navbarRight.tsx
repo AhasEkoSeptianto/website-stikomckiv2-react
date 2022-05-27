@@ -11,6 +11,7 @@ import Settings from "../../pages/settings/Settings";
 import Berita from "../../pages/berita/Berita";
 import Mahasiswa from "../../pages/mahasiswa/Mahasiswa";
 import DashboardAdminPage from "../../pages/Dashboard";
+import AdminPage from "../../pages/admin";
 
 
 class NavbarRight extends React.Component<any, any> {
@@ -18,6 +19,7 @@ class NavbarRight extends React.Component<any, any> {
 		return (
 			<Switch>
 				<Route path={'/dashboard'} exact={true} component={DashboardAdminPage} />
+				<Route path={'/dashboard/admin'} exact={true} component={AdminPage} />
 				<Route path={`/dashboard/berita`} exact={true} component={Berita} />
 				<Route path={`/dashboard/mahasiswa`} exact={true} component={Mahasiswa} />
 				<Route path={`/dashboard/mahasiswa/add`} exact={true} component={AddMhs} />
