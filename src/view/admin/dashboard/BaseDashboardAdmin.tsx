@@ -7,8 +7,6 @@ import { is_auth } from "../../../lib/is_auth";
 
 // redux
 import { connect } from "react-redux";
-import NavbarLeft from "./comp_dashboard/navbar_left/navbarLeft";
-import NavbarRight from "./comp_dashboard/navbar_right/navbarRight";
 
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -25,9 +23,16 @@ import { getCookies, removeCookies } from "src/lib/cookie";
 import { changeName, FormatName } from "src/lib/changeFormName";
 
 import LogoStikom from "src/asset/image/logo Stikom.png";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import AdminPage from "./pages/admin";
+import Berita from "./pages/berita/Berita";
+import Mahasiswa from "./pages/mahasiswa/Mahasiswa";
+import addMhs from "./pages/mahasiswa/addMhs";
+import updateMhs from "./pages/mahasiswa/updateMhs";
+import Settings from "./pages/settings/Settings";
 
-class DashboardAdmin extends React.Component<any, any> {
+class BaseDashboardAdmin extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -221,11 +226,25 @@ class DashboardAdmin extends React.Component<any, any> {
               </Menu>
             </div>
           </div>
-          <NavbarRight />
+          <RoutePage />
         </div>
       </div>
     );
   }
+}
+
+const RoutePage = () => {
+  return (
+    <Switch>
+				<Route path={'/dashboard'} exact={true} component={Dashboard} />
+				<Route path={'/dashboard/admin'} exact={true} component={AdminPage} />
+				<Route path={`/dashboard/berita`} exact={true} component={Berita} />
+				<Route path={`/dashboard/mahasiswa`} exact={true} component={Mahasiswa} />
+				<Route path={`/dashboard/mahasiswa/add`} exact={true} component={addMhs} />
+				<Route path={`/dashboard/mahasiswa/update`} exact={true} component={updateMhs} />
+				<Route path={`/dashboard/settings`} exact={true} component={Settings} />
+			</Switch>
+  )
 }
 
 const mapStateToProps = (state: any) => {
@@ -234,4 +253,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps, null)(DashboardAdmin);
+export default connect(mapStateToProps, null)(BaseDashboardAdmin);

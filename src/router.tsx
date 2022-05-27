@@ -17,7 +17,7 @@ import Daftar_matakuliah_SI from "./view/pages/daftar_matakuliah_SI";
 
 // login page
 import Login from "./view/auth/login";
-import DashboardAdmin from "./view/admin/dashboard/DashboardAdmin";
+import DashboardAdmin from "./view/admin/dashboard/BaseDashboardAdmin";
 
 class Router extends React.Component {
 
