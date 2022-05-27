@@ -27,8 +27,8 @@ const post = async (url: any, data: any) => {
 	return resApi;
 }
 
-const GET = async (url: string) => {
-	return await Axios.get(process.env.REACT_APP_ENP_BE + url)
+const GET = async (url: string, params: any) => {
+	return await Axios.get(process.env.REACT_APP_ENP_BE + url,{ params: params })
 }
 
 

@@ -227,9 +227,11 @@ class BaseDashboardAdmin extends React.Component<any, any> {
               </Menu>
             </div>
           </div>
-          <div className="p-2">
+          <div className="p-5 bg-gray-100 min-h-screen">
             <AdminBreadCrumbs />
-            <RoutePage />
+            <div className="mt-5 bg-white p-3">
+              <RoutePage />
+            </div>
           </div>
         </div>
       </div>
