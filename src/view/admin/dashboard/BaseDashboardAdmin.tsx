@@ -31,6 +31,7 @@ import Mahasiswa from "./pages/mahasiswa/Mahasiswa";
 import addMhs from "./pages/mahasiswa/addMhs";
 import updateMhs from "./pages/mahasiswa/updateMhs";
 import Settings from "./pages/settings/Settings";
+import AdminBreadCrumbs from "src/component/molecules/admin/breadcrum";
 
 class BaseDashboardAdmin extends React.Component<any, any> {
   constructor(props: any) {
@@ -226,7 +227,10 @@ class BaseDashboardAdmin extends React.Component<any, any> {
               </Menu>
             </div>
           </div>
-          <RoutePage />
+          <div className="p-2">
+            <AdminBreadCrumbs />
+            <RoutePage />
+          </div>
         </div>
       </div>
     );
