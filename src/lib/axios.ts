@@ -36,4 +36,12 @@ const POST = async (url: string, data: any) => {
 	return await Axios.post(process.env.REACT_APP_ENP_BE + url, data)
 }
 
-export { get, post, GET, POST };
+const PUT = async (url: string,  params: any, data: any,) => {
+	return await Axios.put(process.env.REACT_APP_ENP_BE + url, data, { params: params })
+}
+
+const DELETE = async (url: string, params: any) => {
+	return await Axios.delete(process.env.REACT_APP_ENP_BE + url, { params: params })
+}
+
+export { get, post, GET, POST, PUT, DELETE };
