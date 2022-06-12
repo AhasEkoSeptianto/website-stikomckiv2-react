@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 // material ui
-import { Avatar, Divider, Grid, Icon, IconButton, Menu, MenuItem } from "@mui/material";
+import { Avatar, Divider, IconButton, Menu, MenuItem } from "@mui/material";
 
 // lib
 import { is_auth } from "../../../lib/is_auth";
@@ -9,14 +9,9 @@ import { is_auth } from "../../../lib/is_auth";
 import { connect } from "react-redux";
 
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
-import SchoolIcon from "@mui/icons-material/School";
-import CastForEducationIcon from "@mui/icons-material/CastForEducation";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ListItemIcon from '@mui/material/ListItemIcon';
 import LogoutIcon from '@mui/icons-material/Logout';
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 
 
 import { getCookies, removeCookies } from "src/lib/cookie";
@@ -32,6 +27,8 @@ import addMhs from "./pages/mahasiswa/addMhs";
 import updateMhs from "./pages/mahasiswa/updateMhs";
 import Settings from "./pages/settings/Settings";
 import AdminBreadCrumbs from "src/component/molecules/admin/breadcrum";
+import MenuSideBarAdmin from "./routerNav";
+import dosen from "./pages/dosen/dosen";
 
 class BaseDashboardAdmin extends React.Component<any, any> {
   constructor(props: any) {
@@ -64,39 +61,7 @@ class BaseDashboardAdmin extends React.Component<any, any> {
   }
 
   render() {
-    const MenuList = [
-      {
-        label: "Dashboard",
-        icon: <DashboardIcon sx={{ width: 25, height: 25 }} />,
-        link: "/dashboard",
-      },
-      {
-        label: 'Admin',
-        icon: <SupervisorAccountIcon sx={{ width: 25, height: 25 }} />,
-        link: '/dashboard/admin'
-      },
-      {
-        label: "Berita",
-        icon: <NewspaperIcon sx={{ width: 25, height: 25 }} />,
-        link: "/dashboard/berita",
-      },
-      {
-        label: "Mahasiswa",
-        icon: <SchoolIcon sx={{ width: 25, height: 25 }} />,
-        link: "/dashboard/mahasiswa",
-      },
-      {
-        label: "Dosen",
-        icon: <CastForEducationIcon sx={{ width: 25, height: 25 }} />,
-        link: "/dashboard/dosen",
-      },
-      {
-        label: "Setting",
-        icon: <SettingsIcon sx={{ width: 25, height: 25 }} />,
-        link: "/dashboard/settings",
-      },
-    ];
-
+    
     const open = Boolean(this.state.anchorEl);
     
     const HandleClickPopup = (event: any) => {
@@ -113,6 +78,8 @@ class BaseDashboardAdmin extends React.Component<any, any> {
       window.location.href = '/'
     }
 
+    let routeNow = this.props.location.pathname
+    
     return (
       <div className="grid grid-cols-12">
         <div className="col-span-2 min-h-screen bg-gray-800">
@@ -130,10 +97,10 @@ class BaseDashboardAdmin extends React.Component<any, any> {
           <Divider />
 
           <div className="space-y-1 border-t">
-            {MenuList.map((item, idx) => (
+            {MenuSideBarAdmin.map((item, idx) => (
               <Link
                 to={item.link + ""}
-                className="flex items-center p-2 space-x-2 hover:bg-blue-400 text-gray-100 font-medium cursor-pointer"
+                className={`flex items-center p-2 space-x-2 hover:bg-blue-500 text-gray-100 font-medium cursor-pointer ${routeNow === item.link ? 'bg-blue-500' : ''}`}
               >
                 {item.icon}
                 <p>{item.label}</p>
@@ -246,8 +213,9 @@ const RoutePage = () => {
 				<Route path={'/dashboard/admin'} exact={true} component={AdminPage} />
 				<Route path={`/dashboard/berita`} exact={true} component={Berita} />
 				<Route path={`/dashboard/mahasiswa`} exact={true} component={Mahasiswa} />
-				<Route path={`/dashboard/mahasiswa/add`} exact={true} component={addMhs} />
+        <Route path={`/dashboard/mahasiswa/add`} exact={true} component={addMhs} />
 				<Route path={`/dashboard/mahasiswa/update`} exact={true} component={updateMhs} />
+        <Route path={`/dashboard/dosen`} exact={true} component={dosen} />
 				<Route path={`/dashboard/settings`} exact={true} component={Settings} />
 			</Switch>
   )

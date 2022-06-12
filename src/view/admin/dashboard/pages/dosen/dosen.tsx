@@ -18,6 +18,7 @@ import { SiGooglescholar, SiGoogleclassroom } from "react-icons/si";
 import { BsFillTelephonePlusFill } from "react-icons/bs";
 import { FcAddressBook } from "react-icons/fc";
 import { MdGrade, MdOutlineDateRange } from "react-icons/md";
+import { AiTwotoneMail } from 'react-icons/ai'
 
 import {
   Button,
@@ -37,12 +38,6 @@ import {
   Alert,
 } from "@mui/material";
 import { Fragment, useMemo, useState } from "react";
-import {
-  N_AddAdmin,
-  N_DeleteAdmin,
-  N_EditAdmin,
-  N_GetListAdmin,
-} from "src/network/admin/admin";
 import useSWR from "swr";
 
 import AddIcon from "@mui/icons-material/Add";
@@ -53,13 +48,22 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import { LoadingButton } from "@mui/lab";
 import Swal from "sweetalert2";
 import FilterTable from "src/component/molecules/admin/filterTable";
-import { N_DELETEMahasiswa, N_GetListMahasiswa, N_POSTMahasiswa, N_PUTMahasiswa } from "src/network/admin/mahasiswa";
+import {
+  N_DELETEMahasiswa,
+  N_GetListMahasiswa,
+  N_POSTMahasiswa,
+  N_PUTMahasiswa,
+} from "src/network/admin/mahasiswa";
 import moment from "moment";
 import { TIMESTAMP_FORMAT_SHOW } from "src/utils/constans/TimestampFormat";
 import { DeleteTableIcon, EditTableIcon } from "src/utils/constans/icon";
 import { DatePicker } from "antd";
+import { N_GETDosen } from "src/network/admin/dosen";
+import TableAdmin from "src/component/molecules/admin/table";
+import ActionAddEdit from "src/component/molecules/admin/form/actionAddEdit";
+import { BsFillTelephoneFill } from 'react-icons/bs'
 
-const Mahasiswa = () => {
+const ListDosen = () => {
   const [params, setParams] = useState({
     page: 1,
     limit: 10,
@@ -82,12 +86,9 @@ const Mahasiswa = () => {
     status: "success" || "failed",
   });
 
-  const {
-    data: listMahasiswa,
-    error,
-    mutate,
-  } = useSWR([params], N_GetListMahasiswa);
-  console.log(listMahasiswa);
+  const { data: listDosen, error, mutate } = useSWR([params], N_GETDosen);
+  console.log(listDosen);
+
   const HandleCloseDrawer = () => {
     setForm({ ...form, open: false });
   };
@@ -126,23 +127,94 @@ const Mahasiswa = () => {
     setParams({ ...params, ...defaults, [key]: value });
   };
 
-  const tableHeaders = [
-    "Name",
-    "Nim",
-    "Jurusan",
-    "Kelas",
-    "No.telp",
-    "Address",
-    "Semester",
-    "Tahun Ajaran",
-    "Register At",
-    "Last Updated",
-    "Action",
-  ];
+
+  const column = [
+      { key: 'nid', label: 'NID' },
+    { key: 'nama', label: 'Nama' },
+    { key: 'email', label: 'Email' },
+    { key: 'notelp', label: 'No Telp' },
+    { key: 'alamat', label: 'Alamat' },
+  ]
+
+  const FormGroup = [
+    {
+        name: "nama",
+        label: "Name",
+        value: "",
+        icon: <AccountCircle />,
+        type: "text",
+    },
+    {
+        name: 'email',
+        label: 'Email',
+        value: '',
+        icon: <AiTwotoneMail size='100%' className='w-5 h-5' />,
+        type: 'email'
+    },
+    {
+        name: 'notelp',
+        label: 'No Telp',
+        value: '',
+        icon: <BsFillTelephoneFill size='100%' className='w-5 h-5' />,
+        type: 'number'
+    },
+    {
+      name: "alamat",
+      label: "Address",
+      icon: <FcAddressBook size="100%" className="w-5 h-5" />,
+      type: "text",
+    },
+  ]
 
   return (
     <Fragment>
-      <Snackbar
+
+        <ActionAddEdit 
+            mutate={mutate}
+            {...form}
+            titleAction='tes lah'
+            form={FormGroup}
+        />
+
+      <div className="flex items-center justify-between mb-2">
+        <h2 className="font-bold text-2xl">List Dosen</h2>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          color="primary"
+          onClick={() => setForm({ type: "add", open: true, oldData: {} })}
+        >
+          Add Dosen
+        </Button>
+      </div>
+
+      <FilterTable
+        filter={[
+          {
+            type: "search",
+            selectOpt: [
+              { label: "Name", value: "name", key: "name" },
+              { label: "Email", value: "email", key: "name" },
+              { label: "Nim", value: "nim", key: "nim" },
+            ],
+            cb: HandleChangeFilter,
+          },
+        ]}
+      />
+
+      <TableAdmin 
+        column={column}
+        data={listDosen?.data?.dosen}
+        pagination={{
+            page: params.page,
+            limit: params.limit,
+            onPageChange: page => console.log(page),
+            onLimitChange: limit => console.log(limit),
+            totalData: 999
+        }}
+      />
+
+      {/* <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={alert.open}
         autoHideDuration={5000}
@@ -256,7 +328,7 @@ const Mahasiswa = () => {
             }
           />
         </Fragment>
-      )}
+      )} */}
     </Fragment>
   );
 };
@@ -273,27 +345,24 @@ const FormActionAdmin = (props: IFormActionAdmin) => {
 
   const [loadingFetch, setLoadingFetch] = useState(false);
   const [form, setForm] = useState<any>({
-	nama: oldData.nama || '',
-	nim: oldData.nim || '',
-	jurusan: oldData.jurusan || '',
-	kelas: oldData.kelas || '',
-	notelp: oldData.notelp || '',
-	alamat: oldData.alamat || '',
-	semester: oldData.semester || '',
-	tahun_ajaran: oldData.tahun_ajaran || ''
+    nama: oldData.nama || "",
+    nim: oldData.nim || "",
+    jurusan: oldData.jurusan || "",
+    kelas: oldData.kelas || "",
+    notelp: oldData.notelp || "",
+    alamat: oldData.alamat || "",
+    semester: oldData.semester || "",
+    tahun_ajaran: oldData.tahun_ajaran || "",
   });
 
   const HandleChangeForm = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-
   const Submit = async (e: any) => {
     e.preventDefault();
 
     setLoadingFetch(true);
-
-
 
     if (type === "edit") {
       await N_PUTMahasiswa(form, oldData._id)
@@ -313,8 +382,8 @@ const FormActionAdmin = (props: IFormActionAdmin) => {
         });
     } else {
       await N_POSTMahasiswa(form)
-        .then((res) => {          
-			mutate();
+        .then((res) => {
+          mutate();
           setAlert({ open: true, msg: res.data.msg, status: "success" });
           onClose();
         })
@@ -329,7 +398,7 @@ const FormActionAdmin = (props: IFormActionAdmin) => {
 
     setLoadingFetch(false);
   };
-  console.log(oldData)
+  console.log(oldData);
   const Form = [
     {
       name: "nama",
@@ -343,27 +412,32 @@ const FormActionAdmin = (props: IFormActionAdmin) => {
       label: "Jurusan",
       icon: <SiGooglescholar size="100%" className="w-5 h-5" />,
       type: "select",
-	  dataSet: [
-		{ label: 'Teknik Informatika', value: 'teknik informatika' },
-		{ label: 'Sistem Informasi', value: 'sistem informasi' }
-	  ]
+      dataSet: [
+        { label: "Teknik Informatika", value: "teknik informatika" },
+        { label: "Sistem Informasi", value: "sistem informasi" },
+      ],
     },
     {
       name: "kelas",
       label: "Kelas",
       icon: <SiGoogleclassroom size="100%" className="w-5 h-5" />,
       type: "select",
-	  dataSet: [
-		{ label: 'Karyawan Sabtu', value: 'karyawan sabtu' },
-		{ label: 'Reguler Malam', value: 'reguler malam' },
-		{ label: 'Reguler Pagi', value: 'reguler pagi' },
-		{ label: 'Shift', value: 'shift' },
-	  ]
+      dataSet: [
+        { label: "Karyawan Sabtu", value: "karyawan sabtu" },
+        { label: "Reguler Malam", value: "reguler malam" },
+        { label: "Reguler Pagi", value: "reguler pagi" },
+        { label: "Shift", value: "shift" },
+      ],
     },
     {
       name: "notelp",
       label: "No. Telp",
-      icon: <span className="flex items-center"><BsFillTelephonePlusFill size="100%" className="w-5 h-5" />+62</span>,
+      icon: (
+        <span className="flex items-center">
+          <BsFillTelephonePlusFill size="100%" className="w-5 h-5" />
+          +62
+        </span>
+      ),
       type: "number",
     },
     {
@@ -397,9 +471,9 @@ const FormActionAdmin = (props: IFormActionAdmin) => {
                 label={item.label}
                 variant="filled"
                 placeholder="type here.."
-				select={item.type === 'select'}
+                select={item.type === "select"}
                 name={item.name}
-				type={item.type}
+                type={item.type}
                 fullWidth
                 value={form?.[item.name]}
                 onChange={HandleChangeForm}
@@ -408,15 +482,15 @@ const FormActionAdmin = (props: IFormActionAdmin) => {
                     <InputAdornment position="start">
                       {item.icon}
                     </InputAdornment>
-                  )
+                  ),
                 }}
               >
-				{item.dataSet?.map((item, key) => (
-					<MenuItem key={key} value={item.value} >
-						{item.label}
-					</MenuItem>
-				))}
-			  </TextField>
+                {item.dataSet?.map((item, key) => (
+                  <MenuItem key={key} value={item.value}>
+                    {item.label}
+                  </MenuItem>
+                ))}
+              </TextField>
             </Fragment>
           ))}
         </div>
@@ -445,4 +519,4 @@ const mapDispathToProps = (dispatch: any) => {
   };
 };
 
-export default connect(null, mapDispathToProps)(Mahasiswa);
+export default connect(null, mapDispathToProps)(ListDosen);
