@@ -9,7 +9,7 @@ const APIADmIN = {
         LIST: 'api/mahasiswa',
         ADD_MAHASISWA : 'api/mahasiswa/add',
         DELETE_MAHASISWA: 'api/mahasiswa/delete',
-        UPDATE_MAHASISWA: 'api/mahasiswa/edut'
+        UPDATE_MAHASISWA: 'api/mahasiswa/update'
     }
 }
 

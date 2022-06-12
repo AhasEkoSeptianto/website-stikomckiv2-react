@@ -5,7 +5,11 @@ export type I_GETMahasiswa = {
 
 export type I_POSTMahasiswa = {
     name: string
-    email: string
-    phoneNumber: any
-    role: string
+    nim: string
+    jurusan: string
+    semester: string | number,
+    kelas: number,
+    alamat: string,
+    notelp: any,
+    tahun_ajaran: string,
 }

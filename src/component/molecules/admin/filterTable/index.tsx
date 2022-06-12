@@ -45,12 +45,14 @@ const SearchFilter = (props: I_FillData) => {
       <TextField
         label="Search"
         size="small"
+        placeholder="type here.."
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
               <Select
                 variant="standard"
                 label="Age"
+                className="px-2"
                 onChange={e => setSelectedBy(e.target.value)}
                 value={selectBy}
                 disableUnderline

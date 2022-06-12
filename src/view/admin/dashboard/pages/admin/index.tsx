@@ -37,6 +37,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { LoadingButton } from "@mui/lab";
 import Swal from "sweetalert2";
 import FilterTable from "src/component/molecules/admin/filterTable";
+import { DeleteTableIcon, EditTableIcon } from "src/utils/constans/icon";
+
 
 export default function AdminPage() {
   const [params, setParams] = useState({
@@ -191,24 +193,30 @@ export default function AdminPage() {
                     <TableCell>{item.phoneNumber}</TableCell>
                     <TableCell>{item.role}</TableCell>
                     <TableCell>
-                      <ModeEditIcon
+                      <div className="flex items-center space-x-2">
+                        <EditTableIcon onClick={() => HandleEdit(item)} />
+                        <DeleteTableIcon onClick={() => HandleDelete(item)} />
+                      </div>
+                      
+                      {/* <ModeEditIcon
                         className="cursor-pointer"
                         sx={{ width: 40, height: 40 }}
                         color="info"
                         onClick={() => HandleEdit(item)}
-                      />
-                      <DeleteIcon
-                        className="cursor-pointer"
-                        sx={{ width: 40, height: 40 }}
-                        color="error"
-                        onClick={() => HandleDelete(item)}
-                      />
+                      /> */}
+                        {/* <DeleteIcon
+                          className="cursor-pointer"
+                          sx={{ width: 40, height: 40 }}
+                          color="error"
+                          onClick={() => HandleDelete(item)}
+                        /> */}
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
+          
           <TablePagination
             rowsPerPageOptions={[1, 2, 3, 10, 25, 100]}
             component="div"
