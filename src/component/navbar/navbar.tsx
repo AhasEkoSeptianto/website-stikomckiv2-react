@@ -9,8 +9,13 @@ import logoNav from "./../../asset/image/logo Stikom.jpeg";
 import { HashLink as Link } from "react-router-hash-link";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Header from "../header/Header";
+import { useAppSelector } from "src/redux/hooks";
 
 function Navbar() {
+
+  const count = useAppSelector(state => state.value)
+  console.log(count)
+
   const [activeMenu, setActiveMenu] = useState<any>({
     "Perguruan Tinggi": false,
     "Program Study TI": false,

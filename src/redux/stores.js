@@ -1,10 +1,11 @@
-import { getCookies } from './../lib/cookie';
+import { getCookies } from '../lib/cookie';
 
 //  create redux
 const initialState = {
 	user: getCookies('user'),
 	dashboardNav: '',
 };
+
 
 const rootReducer = (state = initialState, action) => {
 	switch (action.type) {

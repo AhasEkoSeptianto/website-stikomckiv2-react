@@ -20,7 +20,7 @@ type I_SlcOpt = {
 export default function FilterTable(props: I_FilterTable) {
   const { filter } = props;
   return (
-    <div className="flex items-center my-2">
+    <div className="flex items-center my-5">
       {filter.map((item, idx) => (
         <Fragment>
           {item.type === "search" ? <SearchFilter {...item} /> : null}
