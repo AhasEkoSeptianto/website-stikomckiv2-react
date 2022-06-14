@@ -16,6 +16,9 @@ const APIADmIN = {
         ADD_DOSEN: 'api/dosen/add',
         UPDATE_DOSEN: 'api/dosen/update',
         DELETE_DOSEN: 'api/dosen/delete'
+    },
+    COMMON: {
+        GET_VISITOR: 'api/getVisitor'
     }
 }
 
