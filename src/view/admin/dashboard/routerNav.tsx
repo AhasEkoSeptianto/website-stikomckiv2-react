@@ -17,19 +17,19 @@ const MenuSideBarAdmin = [
 	  link: '/dashboard/admin'
 	},
 	{
-	  label: "Berita",
-	  icon: <NewspaperIcon sx={{ width: 25, height: 25 }} />,
-	  link: "/dashboard/berita",
-	},
-	{
-	  label: "Mahasiswa",
+		label: "Mahasiswa",
 	  icon: <SchoolIcon sx={{ width: 25, height: 25 }} />,
 	  link: "/dashboard/mahasiswa",
 	},
 	{
-	  label: "Dosen",
-	  icon: <CastForEducationIcon sx={{ width: 25, height: 25 }} />,
-	  link: "/dashboard/dosen",
+		label: "Dosen",
+		icon: <CastForEducationIcon sx={{ width: 25, height: 25 }} />,
+		link: "/dashboard/dosen",
+	},
+	{
+	  label: "Berita",
+	  icon: <NewspaperIcon sx={{ width: 25, height: 25 }} />,
+	  link: "/dashboard/berita",
 	},
 	{
 	  label: "Setting",

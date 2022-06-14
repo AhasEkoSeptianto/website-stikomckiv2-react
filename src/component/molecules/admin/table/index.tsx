@@ -2,9 +2,15 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePag
 import { Fragment } from "react"
 
 type I_TableAdmin = {
-    column: any[],
+    column: I_Column[],
     data: any[],
     pagination: I_Pagination
+}
+
+type I_Column = {
+  key: string,
+  label: any,
+  render?: (record: any) => any
 }
 
 type I_Pagination = {
@@ -38,7 +44,9 @@ export default function TableAdmin( props: I_TableAdmin ){
                             sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                         >
                             {column?.map((columnH, idx_data) => (
-                                <TableCell>{dataSource[columnH.key]}</TableCell>    
+                                <TableCell>
+                                  {columnH.render ? columnH.render(dataSource) : dataSource[columnH.key]}
+                                </TableCell>    
                             ))}
                         </TableRow>
                     </Fragment>
