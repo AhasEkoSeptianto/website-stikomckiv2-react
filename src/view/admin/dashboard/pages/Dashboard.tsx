@@ -43,44 +43,9 @@ class DashboardPage extends React.Component<any, any> {
 	render() {
 
 		return (
-			<Grid container spacing={0} className='flex p-2 h-full'>
-				<Grid item xs={12} lg={6}>
-					<Card className={s.cardHeader}>
-						<div className={s.cont_head_icons}>
-							<img src='/image/icons/mahasiswa.svg' className={s.icons_headers} />
-						</div>
+			<div>
 
-						<div>
-							<p>Mahasiswa</p>
-							<p>{this.state.mahasiswa}</p>
-						</div>
-
-					</Card>
-				</Grid>
-
-				<Grid item xs={12} lg={6}>
-					<Card className={s.cardHeader}>
-						<div className={s.cont_head_icons}>
-							<img src='/image/icons/visitor.svg' className={s.icons_headers} />
-						</div>
-
-						<div className={s.cont_info_head}>
-							<p>Visitor Page</p>
-							<p>{this.state.visitor} this month</p>
-						</div>
-
-					</Card>
-				</Grid>
-
-				<Grid item xs={12} lg={8}>
-					<MyChart />
-				</Grid>
-
-				<Grid item xs={12} lg={4}>
-
-				</Grid>
-
-			</Grid>
+			</div>
 		);
 	}
 }

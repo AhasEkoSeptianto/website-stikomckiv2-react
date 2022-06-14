@@ -6,7 +6,7 @@ class changeAccount extends React.Component{
 
 	render(){
 		return(
-			<div className={styles.formSetting}>
+			<div className={`${styles.formSetting}`}>
 				<p>Username</p>
 				<input placeholder="Username" className='border' />
 				<button>Save</button>

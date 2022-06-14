@@ -101,7 +101,7 @@ export default function AdminPage() {
   }
 
   return (
-    <Fragment>
+    <div className="bg-white p-5">
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={alert.open}
@@ -197,19 +197,6 @@ export default function AdminPage() {
                         <EditTableIcon onClick={() => HandleEdit(item)} />
                         <DeleteTableIcon onClick={() => HandleDelete(item)} />
                       </div>
-                      
-                      {/* <ModeEditIcon
-                        className="cursor-pointer"
-                        sx={{ width: 40, height: 40 }}
-                        color="info"
-                        onClick={() => HandleEdit(item)}
-                      /> */}
-                        {/* <DeleteIcon
-                          className="cursor-pointer"
-                          sx={{ width: 40, height: 40 }}
-                          color="error"
-                          onClick={() => HandleDelete(item)}
-                        /> */}
                     </TableCell>
                   </TableRow>
                 ))}
@@ -232,7 +219,7 @@ export default function AdminPage() {
           />
         </Fragment>
       )}
-    </Fragment>
+    </div>
   );
 }
 

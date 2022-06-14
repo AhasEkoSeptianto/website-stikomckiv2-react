@@ -143,7 +143,7 @@ const ListDosen = () => {
   ];
 
   return (
-    <Fragment>
+    <div className='bg-white p-5'>
       <ActionAddEdit
         {...form}
         open={form.open}
@@ -199,7 +199,7 @@ const ListDosen = () => {
           totalData: 999,
         }}
       />
-    </Fragment>
+    </div>
   );
 };
 

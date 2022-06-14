@@ -141,7 +141,7 @@ const Mahasiswa = () => {
   ];
 
   return (
-    <Fragment>
+    <div className='bg-white p-5'>
       <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
         open={alert.open}
@@ -257,7 +257,7 @@ const Mahasiswa = () => {
           />
         </Fragment>
       )}
-    </Fragment>
+    </div>
   );
 };
 
@@ -329,7 +329,6 @@ const FormActionAdmin = (props: IFormActionAdmin) => {
 
     setLoadingFetch(false);
   };
-  console.log(oldData)
   const Form = [
     {
       name: "nama",

@@ -99,7 +99,7 @@ class Master extends React.Component<any, any> {
 
 	render() {
 		return (
-			<div className={styles.body}>
+			<div className={`${styles.body} bg-white p-5`}>
 				<div className={styles.nav_berita}>
 					<p onClick={() => this.setState({ navCreate: true })} className={this.state.navCreate ? `${styles.create_btn} bg-blue-100` : styles.create_btn}>
 						create

@@ -23,13 +23,18 @@ class Settings extends React.Component<any, any> {
 			<div className={styles.body}>
 
 				<h1 className={styles.titleHead}>Setting</h1>
+				<div className='space-y-5'>
+					{/* settings profile */}
+					<div className="bg-white p-3">
+						<p className={styles.titleSetting}>Profile</p>
+						<ChangeName />
+					</div>
 
-				{/* settings profile */}
-				<p className={styles.titleSetting}>Profile</p>
-				<ChangeName />
-
-				<p className={styles.titleSetting}>Account</p>
-				<ChangeAccount />
+					<div className='bg-white p-3'>
+						<p className={styles.titleSetting}>Account</p>
+						<ChangeAccount />
+					</div>
+				</div>
 
 				<button className={styles.buttonLogout} onClick={this.Exit}>Exit</button>
 
