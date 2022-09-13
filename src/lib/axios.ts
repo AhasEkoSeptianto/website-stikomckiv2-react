@@ -1,8 +1,8 @@
 import Axios from 'axios'
 import { getCookies } from './cookie';
 
-Axios.defaults.baseURL = 'http://localhost:6868/';
-// Axios.defaults.baseURL = process.env.REACT_APP_ENP_BE;
+// Axios.defaults.baseURL = 'http://localhost:9000/';
+Axios.defaults.baseURL = process.env.REACT_APP_ENP_BE;
 Axios.defaults.headers.common['Authorization'] = getCookies('auth-token');
 
 const get = async (url: string) => {
