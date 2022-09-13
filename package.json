@@ -50,7 +50,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build&&yarn global add serve build",
+    "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
