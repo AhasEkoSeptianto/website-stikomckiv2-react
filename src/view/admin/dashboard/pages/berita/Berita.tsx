@@ -89,7 +89,7 @@ class Master extends React.Component<any, any> {
 			`${process.env.REACT_APP_ENP_BE}api/broadcast/allData`
 		)
 			.then((res) => {
-				this.setState({ listNews: res.data.reverse() })
+				this.setState({ listNews: res.data.data.reverse() })
 			})
 			.catch((err) => console.log(err));
 	};
@@ -115,10 +115,10 @@ class Master extends React.Component<any, any> {
 			<div className={`${styles.body} bg-white p-5`}>
 				<TabContext value={activeTab}>
 					<TabList onChange={(e,value) => this.setState({ ...this.state, activeTab: value })} aria-label="lab API tabs example" className='border-b'>
-						<Tab label="Write News" value="1" />
-						<Tab label="List Articles" value="2" />
+						<Tab label="List Articles" value="1" />
+						<Tab label="Write News" value="2" />
 					</TabList>
-					<TabPanel value="1">
+					<TabPanel value="2">
 						{/* create */}
 							<div
 								className={styles.cont_create_active}
@@ -178,7 +178,7 @@ class Master extends React.Component<any, any> {
 							</div>
 							{/* end create */}
 					</TabPanel>
-					<TabPanel value="2">
+					<TabPanel value="1">
 						{/* list */}
 						<div
 							className={styles.cont_create_active}

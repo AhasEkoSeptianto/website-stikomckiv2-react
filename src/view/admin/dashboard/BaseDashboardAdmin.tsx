@@ -179,16 +179,20 @@ class BaseDashboardAdmin extends React.Component<any, any> {
                 <MenuItem>
                   <Avatar /> Profile
                 </MenuItem>
-                <MenuItem>
-                  <Avatar /> My account
-                </MenuItem>
+                <Link to='/dashboard/settings?tab=account'>
+                  <MenuItem>
+                    <Avatar /> My account
+                  </MenuItem>
+                </Link>
                 <Divider />
-                <MenuItem>
-                  <ListItemIcon>
-                    <SettingsIcon fontSize="small" />
-                  </ListItemIcon>
-                  Settings
-                </MenuItem>
+                <Link to='/dashboard/settings'>
+                  <MenuItem>
+                    <ListItemIcon>
+                      <SettingsIcon fontSize="small" />
+                    </ListItemIcon>
+                    Settings
+                  </MenuItem>
+                </Link>
                 <MenuItem onClick={Logout}>
                   <ListItemIcon>
                     <LogoutIcon fontSize="small" />
