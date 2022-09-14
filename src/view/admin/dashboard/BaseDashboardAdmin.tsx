@@ -100,10 +100,14 @@ class BaseDashboardAdmin extends React.Component<any, any> {
             {MenuSideBarAdmin.map((item, idx) => (
               <Link
                 to={item.link + ""}
-                className={`flex items-center p-2 space-x-2 hover:bg-blue-500 text-gray-100 font-medium cursor-pointer ${routeNow === item.link ? 'bg-blue-500' : ''}`}
               >
-                {item.icon}
-                <p>{item.label}</p>
+                <div>
+                  <div className={`flex items-center p-3 space-x-2 hover:bg-blue-500 text-gray-100 font-medium cursor-pointer ${routeNow === item.link ? 'bg-blue-500' : ''}`}>
+                    {item.icon}
+                    <p>{item.label}</p>
+                  </div>
+                  <Divider light />
+                </div>
               </Link>
             ))}
           </div>

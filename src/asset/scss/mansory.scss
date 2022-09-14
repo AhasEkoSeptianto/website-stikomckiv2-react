@@ -1,0 +1,27 @@
+@layer utilities {
+    @variants responsive {
+        .masonry-6-col {
+            column-count: 6;
+            column-gap: 1em;
+        }
+        .masonry-5-col {
+            column-count: 5;
+            column-gap: 1em;
+        }
+        .masonry-4-col {
+            column-count: 4;
+            column-gap: 1em;
+        }
+        .masonry-3-col {
+            column-count: 3;
+            column-gap: 1em;
+        }
+        .masonry-2-col {
+            column-count: 2;
+            column-gap: 1em;
+        }
+        .break-inside {
+            break-inside: avoid;
+        }
+    }
+}

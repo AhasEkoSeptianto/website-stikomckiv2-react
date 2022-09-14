@@ -8,32 +8,32 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 const MenuSideBarAdmin = [
 	{
 	  label: "Dashboard",
-	  icon: <DashboardIcon sx={{ width: 25, height: 25 }} />,
+	  icon: <DashboardIcon sx={{ width: 35, height: 35 }} />,
 	  link: "/dashboard",
 	},
 	{
 	  label: 'Admin',
-	  icon: <SupervisorAccountIcon sx={{ width: 25, height: 25 }} />,
+	  icon: <SupervisorAccountIcon sx={{ width: 35, height: 35 }} />,
 	  link: '/dashboard/admin'
 	},
 	{
 		label: "Mahasiswa",
-	  icon: <SchoolIcon sx={{ width: 25, height: 25 }} />,
+	  icon: <SchoolIcon sx={{ width: 35, height: 35 }} />,
 	  link: "/dashboard/mahasiswa",
 	},
 	{
 		label: "Dosen",
-		icon: <CastForEducationIcon sx={{ width: 25, height: 25 }} />,
+		icon: <CastForEducationIcon sx={{ width: 35, height: 35 }} />,
 		link: "/dashboard/dosen",
 	},
 	{
 	  label: "Berita",
-	  icon: <NewspaperIcon sx={{ width: 25, height: 25 }} />,
+	  icon: <NewspaperIcon sx={{ width: 35, height: 35 }} />,
 	  link: "/dashboard/berita",
 	},
 	{
 	  label: "Setting",
-	  icon: <SettingsIcon sx={{ width: 25, height: 25 }} />,
+	  icon: <SettingsIcon sx={{ width: 35, height: 35 }} />,
 	  link: "/dashboard/settings",
 	},
   ];
