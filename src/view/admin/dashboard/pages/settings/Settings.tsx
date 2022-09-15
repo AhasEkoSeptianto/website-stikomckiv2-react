@@ -71,7 +71,7 @@ class Settings extends React.Component<any, any> {
 							{listSetting.map((item, idx) => (
 								<Link to={`/dashboard/settings?tab=${item.params}`}>
 									<p className={`px-5 py-2 hover:bg-gray-300 cursor-pointer font-normal ${item.params === tab ? 'bg-gray-300' : ''}`} key={idx}>{item.label}</p>
-									<Divider />
+									<Divider /> 
 								</Link>
 							))}
 						</div>
@@ -79,8 +79,10 @@ class Settings extends React.Component<any, any> {
 				</div>
 				<div className='col-span-9 space-y-5'>
 					<div className="bg-white p-3">
-						<p className={styles.titleSetting}>{tab?.toUpperCase()}</p>
-						{listSetting.filter(item => item.params === tab)?.[0].comp}
+						<p className={`${styles.titleSetting}`}>{tab?.toUpperCase()}</p>
+						<div className="mt-5">
+							{listSetting.filter(item => item.params === tab)?.[0].comp}
+						</div>
 					</div>
 			 	</div>
 			</div>

@@ -176,9 +176,11 @@ class BaseDashboardAdmin extends React.Component<any, any> {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                <MenuItem>
-                  <Avatar /> Profile
-                </MenuItem>
+                <Link to='/dashboard/settings'>
+                  <MenuItem>
+                    <Avatar /> Profile
+                  </MenuItem>
+                </Link>
                 <Link to='/dashboard/settings?tab=account'>
                   <MenuItem>
                     <Avatar /> My account

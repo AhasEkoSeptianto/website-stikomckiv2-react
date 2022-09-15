@@ -132,15 +132,15 @@ class Header extends React.Component<any, any>{
               >
                 {isAuth ? (
                   <Fragment>
-                    <MenuItem>
-                      <Link to="/dashboard">
+                    <Link to="/dashboard">
+                      <MenuItem>  
                         <DashboardIcon
                           className="mr-3"
                           sx={{ width: 20, height: 20 }}
                         />
                         <span>Admin Dashboard</span>
-                      </Link>
-                    </MenuItem>
+                      </MenuItem>
+                    </Link>
                     <MenuItem onClick={Logout}>
                       
                         <LogoutIcon
@@ -151,15 +151,15 @@ class Header extends React.Component<any, any>{
                     </MenuItem>
                   </Fragment>
                 ) : (
-                  <MenuItem>
-                    <Link to="/login">
-                      <LoginIcon
-                        className="mr-3"
-                        sx={{ width: 20, height: 20 }}
-                      />
-                      <span>Login</span>
-                    </Link>
-                  </MenuItem>
+                  <Link to="/login">
+                    <MenuItem>
+                        <LoginIcon
+                          className="mr-3"
+                          sx={{ width: 20, height: 20 }}
+                        />
+                        <span>Login</span>
+                    </MenuItem>
+                  </Link>
                 )}
               </Menu>
             </div>

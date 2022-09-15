@@ -54,7 +54,8 @@ class login extends React.Component<any, any> {
               console.log(res)
               setCookies('user', res.data.name);
               setCookies('auth-token', res.data.token);
-              this.props.history.push('/dashboard');
+              // this.props.history.push('/dashboard');
+              window.location.href = '/dashboard'
             }).catch(err => {
               console.log(err)
             })

@@ -43,7 +43,7 @@ class tujuan_prodi_TI extends React.Component<any, any>{
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>
-				<div className='container mx-auto my-10'>
+				<div className='container mx-auto my-10' style={{ minHeight: 600 }}>
 					<Grid container spacing={5}>
 						<Grid item sm={8}>
 							<Paper

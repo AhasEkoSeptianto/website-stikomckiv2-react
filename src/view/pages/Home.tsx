@@ -74,7 +74,7 @@ class Home extends React.Component {
         >
           <div className="bg-slider1 w-screen h-sliderImage bg-cover flex flex-col justify-center">
             <div className="w-10/12 mx-auto text-white space-y-1">
-              <h2 className="bg-black bg-opacity-70 p-1 w-max text-2xl">Selamat datang pppppppppppppppp</h2>
+              <h2 className="bg-black bg-opacity-70 p-1 w-max text-2xl">Selamat datang</h2>
               <h4 className="bg-black bg-opacity-70 p-1 w-max text-2xl">
                 di Sekolah Tinggi Ilmu Komputer Cipta Karya Informatika Kampus D
               </h4>

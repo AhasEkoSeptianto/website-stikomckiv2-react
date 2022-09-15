@@ -1,2 +1,2 @@
-REACT_APP_BASE_URL=https://website-stikomcki.herokuapp.com/
+REACT_APP_BASE_URL=https://websitestikomckibev2.herokuapp.com/
 material ui versi 4.11

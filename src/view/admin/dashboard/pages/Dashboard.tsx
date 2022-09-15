@@ -116,7 +116,6 @@ const LatestArticle = () => {
   }
 
   const { data, error } = useSWR(`/api/broadcast/allData`, fetching)
-  console.log(data)
   const columns = [
     {
       label: 'Title',
@@ -135,6 +134,7 @@ const LatestArticle = () => {
       </Link>
       <TableAdmin
         column={columns}
+        loading={!data && !error}
         data={data?.data?.data}
         pagination={{
           page: params.page,

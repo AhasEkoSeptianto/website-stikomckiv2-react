@@ -12,7 +12,7 @@ class changeAccount extends React.Component{
 				<button>Save</button>
 
 				<p>Password</p>
-				<input placeholder="password" className='border' />
+				<input placeholder="password" className='border' / >
 				<button>Save</button>
 			</div>
 			)

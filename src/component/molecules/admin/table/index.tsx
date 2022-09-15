@@ -1,8 +1,9 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material"
+import { CircularProgress, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material"
 import { Fragment } from "react"
 
 type I_TableAdmin = {
     column: I_Column[],
+    loading?: boolean,
     data: any[],
     pagination: I_Pagination
 }
@@ -22,10 +23,10 @@ type I_Pagination = {
 }
 
 export default function TableAdmin( props: I_TableAdmin ){
-    const { column, data, pagination } = props
+    const { column, data, pagination, loading } = props
 
     return (
-        <Fragment>
+        <div className='relative'>
             <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -37,23 +38,27 @@ export default function TableAdmin( props: I_TableAdmin ){
                   ))}
                 </TableRow>
               </TableHead>
-              <TableBody>
-                {data?.map((dataSource, idx) => (
-                    <Fragment>
-                        <TableRow
-                            sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                        >
-                            {column?.map((columnH, idx_data) => (
-                                <TableCell>
-                                  {columnH.render ? columnH.render(dataSource) : dataSource[columnH.key]}
-                                </TableCell>    
-                            ))}
-                        </TableRow>
-                    </Fragment>
+                { data?.map((dataSource, idx) => (
+                  <TableBody>
+                    <TableRow
+                        sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                        {column?.map((columnH, idx_data) => (
+                            <TableCell>
+                              {columnH.render ? columnH.render(dataSource) : dataSource[columnH.key]}
+                            </TableCell>    
+                        ))}
+                    </TableRow>
+                  </TableBody>
                 ))}
-              </TableBody>
             </Table>
           </TableContainer>
+          {loading && data?.length <= 0 && (
+            <div className='w-full flex justify-center items-center h-32'>
+                <CircularProgress /> 
+            </div>
+          )}
+
           <TablePagination
             rowsPerPageOptions={[1, 2, 3, 10, 25, 100]}
             component="div"
@@ -67,6 +72,6 @@ export default function TableAdmin( props: I_TableAdmin ){
                 pagination.onLimitChange(e.target.value)
             }}
           />
-        </Fragment>
+        </div>
     )
 }
