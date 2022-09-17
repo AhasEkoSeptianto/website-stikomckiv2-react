@@ -1,3 +1,7 @@
 input[type=button]  {
     outline: none;
 }
+
+html {
+    font-family: 'Nunito Sans', sans-serif;
+}

@@ -19,6 +19,7 @@ import { post } from "src/lib/axios";
 import moment from "moment";
 import { LoadingButton, TabContext, TabList, TabPanel } from "@mui/lab";
 import { toast } from "react-toastify";
+import { Image } from "antd";
 
 var cookie = new Cookies();
 
@@ -119,8 +120,9 @@ class Master extends React.Component<any, any> {
 						<Tab label="Write News" value="2" />
 					</TabList>
 					<TabPanel value="2">
+						<WriteArticle />
 						{/* create */}
-							<div
+							{/* <div
 								className={styles.cont_create_active}
 							>
 								<div className={styles.left_windowCreate}>
@@ -175,7 +177,7 @@ class Master extends React.Component<any, any> {
 										Save {this.state.isLoading ? <CircularProgress style={{ marginLeft: 10 }} size={15} color="inherit" disableShrink /> : null } 
 									</button>
 								</div>
-							</div>
+							</div> */}
 							{/* end create */}
 					</TabPanel>
 					<TabPanel value="1">
@@ -215,6 +217,7 @@ class Master extends React.Component<any, any> {
 										() => this.setState({modal: {id:val._id, title: val.title, image: val.imageUrl, content: val.content, MediaId: val.MediaId, time_post: val.time_post, open: true }})
 										}>
 										<h2 className='overflow-hidden text-sm lg:text-lg font-bold text-center'>{val.title}</h2>
+										{/* <Image src={val.imageUrl}  /> */}
 										<img src={`${val.imageUrl}`} className='mx-auto my-5' />
 										<p className="text-xs mb-1 text-gray-500 mt-12">{moment(val.time_post).format('llll')}</p>
 										<p className='text-sm'>{val.content}</p>
@@ -232,6 +235,14 @@ class Master extends React.Component<any, any> {
 			</div>
 		);
 	}
+}
+
+const WriteArticle = () => {
+	return (
+		<div>
+			<p>Tes</p>
+		</div>
+	)
 }
 
 const mapDispatchToProps = (dispatch: any) => {

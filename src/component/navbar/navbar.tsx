@@ -88,7 +88,7 @@ function Navbar() {
                   setActiveMenu({ ...activeMenu, [nav.label]: false })
                 }
               >
-                <h3 className="text-lg ">{nav.label}</h3>
+                <p className="text-lg font-medium">{nav.label}</p>
                 {nav.dropdown && (
                   <KeyboardArrowDownIcon sx={{ width: 18, height: 18 }} />
                 )}
@@ -96,7 +96,7 @@ function Navbar() {
               <div className="relative h-0">
                 <div
                   className={`absolute top-0 divide-y transition-height duration-300 ease-in-out ${
-                    activeMenu[nav.label] ? "h-60" : "h-0"
+                    activeMenu[nav.label] ? "h-96" : "h-0"
                   } overflow-hidden  z-50 `}
                   onMouseOver={(e) =>
                     setActiveMenu({ ...activeMenu, [nav.label]: true })
@@ -109,7 +109,7 @@ function Navbar() {
                     <Link to={dropdown_item.link}>
                       <p
                         key={idx}
-                        className="bg-white p-2 text-sm cursor-pointer hover:bg-gray-100 border"
+                        className="bg-white p-3 text-sm cursor-pointer hover:bg-gray-100 border"
                       >
                         {dropdown_item.label}
                       </p>

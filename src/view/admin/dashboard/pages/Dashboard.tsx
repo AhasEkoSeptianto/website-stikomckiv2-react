@@ -6,7 +6,6 @@ import s from "./../../../../asset/css/admin/dashboard/Dashboard.module.css";
 // react material ui
 import { Grid, Card } from "@mui/material";
 
-import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 import { connect } from "react-redux";
@@ -24,6 +23,12 @@ import { Link, Route, Switch } from "react-router-dom";
 import { GET } from "src/lib/axios";
 import { Table } from "antd";
 import TableAdmin from "src/component/molecules/admin/table";
+import { Calendar, momentLocalizer } from 'react-big-calendar'
+import 'react-big-calendar/lib/css/react-big-calendar.css'
+import moment from 'moment'
+
+const localizer = momentLocalizer(moment)
+
 
 const DashboardPage = () => {
 
@@ -71,7 +76,9 @@ const DashboardPage = () => {
       <div className="col-span-8">
           <LatestArticle />
       </div>
-      <div className="col-span-4"></div>
+      <div className="col-span-4">
+        <MyCalendar />
+      </div>
     </div>
   );
 };
@@ -147,6 +154,27 @@ const LatestArticle = () => {
     </div>
   )
 }
+
+const MyCalendar = () => {
+  return (
+    <div className='m-10 p-3 bg-white shadow'>
+      <p className='mt-2 mb-3 font-semibold underline italic'>Calendar</p>
+      <Calendar
+        localizer={localizer}
+        view='month'
+        views={['month']}
+        // events={(e:any) => console.log(e)}
+        onSelectSlot={e => console.log(e)}
+        selectable
+        startAccessor="start"
+        endAccessor="end"
+        style={{ height: 500 }}
+      />
+    </div>
+  )
+}
+
+
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
