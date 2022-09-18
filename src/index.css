@@ -6,3 +6,19 @@ iframe {
     pointer-events: none;
   }
 
+
+  @layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: revert;
+      font-weight: revert;
+    }
+  }
+
+  textarea:focus, input:focus{
+    outline: none;
+}

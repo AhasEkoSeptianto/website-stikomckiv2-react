@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import styles from "./../../../../../asset/css/admin/dashboard/pages/berita.module.css";
 
@@ -6,7 +6,7 @@ import Axios from "axios";
 
 import CircularProgress from "@mui/material/CircularProgress";
 
-import { Card, Modal, Backdrop, Fade, Button, Divider, Tab } from '@mui/material';
+import { Card, Modal, Backdrop, Fade, Button, Divider, Tab, TextField } from '@mui/material';
 
 // Cookie
 import Cookies from "universal-cookie";
@@ -19,7 +19,9 @@ import { post } from "src/lib/axios";
 import moment from "moment";
 import { LoadingButton, TabContext, TabList, TabPanel } from "@mui/lab";
 import { toast } from "react-toastify";
-import { Image } from "antd";
+import { Image, Upload } from "antd";
+import MyEditor from "src/component/molecules/editor/editor.js";
+import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 
 var cookie = new Cookies();
 
@@ -120,7 +122,7 @@ class Master extends React.Component<any, any> {
 						<Tab label="Write News" value="2" />
 					</TabList>
 					<TabPanel value="2">
-						<WriteArticle />
+						<WriteArticle generatedList={this._generatedList} />
 						{/* create */}
 							{/* <div
 								className={styles.cont_create_active}
@@ -182,6 +184,7 @@ class Master extends React.Component<any, any> {
 					</TabPanel>
 					<TabPanel value="1">
 						{/* list */}
+						{console.log(this.state.listNews)}
 						<div
 							className={styles.cont_create_active}
 						>
@@ -196,7 +199,7 @@ class Master extends React.Component<any, any> {
 									<p className='text-2xl text-center font-bold'>{this.state.modal.title}</p>
 									<img src={`${this.state.modal.image}`} className='w-11/12 mx-auto my-5' />
 									<p className="text-xs mb-1 text-gray-500 mt-12">{moment(this.state.modal.time_post).format('llll')}</p>
-									<p className='mb-10 mt-2'>{this.state.modal.content}</p>
+									<div className="mb-10 mt-2" dangerouslySetInnerHTML={{ __html: this.state.modal.content }}></div>
 
 									<div className='flex justify-end mt-20 mb-10'>
 										<div>
@@ -220,7 +223,7 @@ class Master extends React.Component<any, any> {
 										{/* <Image src={val.imageUrl}  /> */}
 										<img src={`${val.imageUrl}`} className='mx-auto my-5' />
 										<p className="text-xs mb-1 text-gray-500 mt-12">{moment(val.time_post).format('llll')}</p>
-										<p className='text-sm'>{val.content}</p>
+										<div dangerouslySetInnerHTML={{ __html: val.content }}></div>
 									</Card>
 								))}
 							</div>
@@ -237,10 +240,111 @@ class Master extends React.Component<any, any> {
 	}
 }
 
-const WriteArticle = () => {
-	return (
+const WriteArticle = ({ generatedList }:any) => {
+
+	const [ form, setForm ] = useState<any>({
+		title: '',
+		content: '',
+		thumbnail: null,
+		file: null,
+		livePath: ''
+	})
+	const [ loadingSubmit, setLoadingSubmit ] = useState(false)
+	const [ loadingUploadThumbnail, setLoadingUploadThumbnail ] = useState(false)
+
+	// const onChangeFile= (e:any) => {
+	// 	const file = e.target.files[0];
+	// 	const path = URL.createObjectURL(file);
+	// 	setForm({ ...form , file: file, livePath: path})
+	// }
+
+	const getBase64 = (img: File, callback: (url: string) => void) => {
+		const reader = new FileReader();
+		reader.addEventListener('load', () => callback(reader.result as string));
+		reader.readAsDataURL(img);
+	  };
+
+	const handleChange = (info: any) => {
+		if (info.file.status === 'uploading') {
+		  setLoadingUploadThumbnail(true)
+		  return;
+		}
+		if (info.file.status === 'done') {
+		  // Get this url from response in real world.
+		  getBase64(info.file.originFileObj as File, url => {
+			setLoadingUploadThumbnail(false);
+			setForm({...form, file: info.file.originFileObj, livePath:url});
+		  });
+		}
+	  };
+
+	  const uploadButton = (
 		<div>
-			<p>Tes</p>
+		  {loadingUploadThumbnail ? <LoadingOutlined /> : <PlusOutlined />}
+		  <div style={{ marginTop: 8 }}>Upload</div>
+		</div>
+	  );
+
+	  console.log(form)
+	const Submit = async () => {
+
+		setLoadingSubmit(true)// loading true
+		
+		const formData = new FormData();
+		formData.append("file", form.file);
+
+		await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/addImage`, formData)
+			.then(async (res) => {
+				if (res.data.status === true) {
+					await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/addNews`, {
+						judul: form.title,
+						MediaId: res?.data?.MediaId,
+						content: form.content,
+						imgUrl: res.data.path,
+						token: cookie.get('auth-token'),
+					}).then(res => {
+						toast.success(res.data.message, { position: toast.POSITION.TOP_RIGHT })
+						generatedList();
+					}).catch(err => alert(err));
+				}
+			})
+
+
+			setLoadingSubmit(false)
+	}
+
+	return (
+		<div className="space-y-5">
+			<TextField 
+				label='Judul Article' 
+				className="w-1/2"
+				onChange={e => setForm({ ...form, title: e.target.value })}
+			/>
+			
+			<div>
+				<p>Thumbnail :</p>
+				<div className="border w-max p-2">
+					<Upload
+						name="avatar"
+						listType="picture-card"
+						className="avatar-uploader"
+						showUploadList={false}
+						action={`${process.env.REACT_APP_ENP_BE}api/broadcast/addImage`}
+						onChange={handleChange}
+						>
+						{form.livePath ? (
+							<div>
+								<Image width={200} src={form.livePath} preview={false} className='p-2' sizes={'20'} />
+							</div>
+						) : uploadButton}
+					</Upload>
+				</div>
+			</div>
+			<div>
+				<p>Article :</p>
+				<MyEditor onChangeEditor={(content:any) => setForm({...form, content: content})} />
+			</div>
+			<Button variant='contained' onClick={Submit}>Submit</Button>
 		</div>
 	)
 }
