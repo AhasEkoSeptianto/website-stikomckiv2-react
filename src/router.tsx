@@ -3,6 +3,7 @@ import React from "react";
 // react-router-dom
 import { Route, Switch } from "react-router-dom";
 
+
 // pages
 import Home from "./view/pages/Home";
 import Visi_misi_perguruan_tinggi from "./view/pages/visi_misi_perguruan_tinggi";
@@ -19,9 +20,12 @@ import Daftar_matakuliah_SI from "./view/pages/daftar_matakuliah_SI";
 import Login from "./view/auth/login";
 import DashboardAdmin from "./view/admin/dashboard/BaseDashboardAdmin";
 
+import { useLocation } from 'react-router-dom'
+
 class Router extends React.Component {
 
 	render() {
+
 		return (
 			<Switch>
 				<Route path="/dashboard" component={DashboardAdmin} />

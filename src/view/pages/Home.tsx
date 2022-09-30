@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, useEffect } from "react";
 
 // my nav
 
@@ -10,10 +10,11 @@ import ScrollableAnchor from "react-scrollable-anchor";
 import s from "./../../asset/css/home.module.css";
 
 import Navbar from "../../component/navbar/navbar";
-import { get } from "../../lib/axios";
+import { get, POST } from "../../lib/axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Footer from "src/component/footer/Footer";
+import { useLocation } from "react-router-dom";
 
 class Home extends React.Component {
   async componentDidMount() {
@@ -61,6 +62,7 @@ class Home extends React.Component {
 
     return (
       <div className={s.containermPage}>
+        <Try />
         <Navbar />
         <ScrollableAnchor id="main">
           <div></div>
@@ -96,6 +98,22 @@ class Home extends React.Component {
       </div>
     );
   }
+}
+
+const Try = () => {
+  const location = useLocation();
+  
+  const query = new URLSearchParams(location.search);
+  let code = query.get('code') 
+
+  // useEffect(() => {
+  //   POST('api/login-google', { code: code })
+  //     .then(res => {
+  //       console.log(res)
+  //     }).catch(err => console.log(err))
+  // },[code])
+
+  return <Fragment></Fragment>
 }
 
 export default Home;

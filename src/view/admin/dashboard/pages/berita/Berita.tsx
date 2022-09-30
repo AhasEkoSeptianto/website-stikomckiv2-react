@@ -184,7 +184,6 @@ class Master extends React.Component<any, any> {
 					</TabPanel>
 					<TabPanel value="1">
 						{/* list */}
-						{console.log(this.state.listNews)}
 						<div
 							className={styles.cont_create_active}
 						>
@@ -247,7 +246,9 @@ const WriteArticle = ({ generatedList }:any) => {
 		content: '',
 		thumbnail: null,
 		file: null,
-		livePath: ''
+		livePath: '',
+		MediaId: '',
+		imgUrl: ''
 	})
 	const [ loadingSubmit, setLoadingSubmit ] = useState(false)
 	const [ loadingUploadThumbnail, setLoadingUploadThumbnail ] = useState(false)
@@ -273,7 +274,7 @@ const WriteArticle = ({ generatedList }:any) => {
 		  // Get this url from response in real world.
 		  getBase64(info.file.originFileObj as File, url => {
 			setLoadingUploadThumbnail(false);
-			setForm({...form, file: info.file.originFileObj, livePath:url});
+			setForm({...form, file: info.file.originFileObj, livePath:url, MediaId: info.file.response.MediaId, imgUrl: info.file.response.path});
 		  });
 		}
 	  };
@@ -293,24 +294,18 @@ const WriteArticle = ({ generatedList }:any) => {
 		const formData = new FormData();
 		formData.append("file", form.file);
 
-		await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/addImage`, formData)
-			.then(async (res) => {
-				if (res.data.status === true) {
-					await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/addNews`, {
-						judul: form.title,
-						MediaId: res?.data?.MediaId,
-						content: form.content,
-						imgUrl: res.data.path,
-						token: cookie.get('auth-token'),
-					}).then(res => {
-						toast.success(res.data.message, { position: toast.POSITION.TOP_RIGHT })
-						generatedList();
-					}).catch(err => alert(err));
-				}
-			})
-
-
-			setLoadingSubmit(false)
+		await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/addNews`, {
+			judul: form.title,
+			MediaId: form.MediaId,
+			content: form.content,
+			imgUrl: form.imgUrl,
+			token: cookie.get('auth-token'),
+		}).then(res => {
+			toast.success(res.data.message, { position: toast.POSITION.TOP_RIGHT })
+			generatedList();
+		}).catch(err => alert(err));
+		
+		setLoadingSubmit(false)
 	}
 
 	return (
@@ -325,7 +320,7 @@ const WriteArticle = ({ generatedList }:any) => {
 				<p>Thumbnail :</p>
 				<div className="border w-max p-2">
 					<Upload
-						name="avatar"
+						name="file"
 						listType="picture-card"
 						className="avatar-uploader"
 						showUploadList={false}
