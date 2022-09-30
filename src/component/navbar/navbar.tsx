@@ -36,7 +36,7 @@ function Navbar() {
           link: "/tujuan-perguruan-tinggi#main",
         },
         { label: "Berita Terbaru", link: "/berita-terbaru" },
-        { label: "Pengumuman", link: "#" },
+        { label: "Pengumuman", link: "/pengumuman" },
       ],
     },
     {

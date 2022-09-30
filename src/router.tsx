@@ -21,6 +21,8 @@ import Login from "./view/auth/login";
 import DashboardAdmin from "./view/admin/dashboard/BaseDashboardAdmin";
 
 import { useLocation } from 'react-router-dom'
+import PengumumanDefaultPage from "./view/pages/Pengumuman";
+import BeritaTerbaruDefaultPage from "./view/pages/beritaTerbaru";
 
 class Router extends React.Component {
 
@@ -53,6 +55,14 @@ class Router extends React.Component {
 				<Route
 					path="/daftar-matakuliah-TI"
 					component={Daftar_matakuliah_TI}
+				/>
+				<Route
+					path="/pengumuman"
+					component={PengumumanDefaultPage}
+				/>
+				<Route 
+					path='/berita-terbaru'
+					component={BeritaTerbaruDefaultPage}
 				/>
 				<Route path="/" component={Home} />
 			</Switch>

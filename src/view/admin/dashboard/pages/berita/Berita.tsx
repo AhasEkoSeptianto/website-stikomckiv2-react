@@ -286,14 +286,13 @@ const WriteArticle = ({ generatedList }:any) => {
 		</div>
 	  );
 
-	  console.log(form)
-	const Submit = async () => {
-
+	  const Submit = async () => {
+		  
 		setLoadingSubmit(true)// loading true
 		
 		const formData = new FormData();
 		formData.append("file", form.file);
-
+		
 		await post(`${process.env.REACT_APP_ENP_BE}api/broadcast/addNews`, {
 			judul: form.title,
 			MediaId: form.MediaId,
@@ -308,6 +307,7 @@ const WriteArticle = ({ generatedList }:any) => {
 		setLoadingSubmit(false)
 	}
 
+	console.log(form)
 	return (
 		<div className="space-y-5">
 			<TextField 
@@ -337,7 +337,7 @@ const WriteArticle = ({ generatedList }:any) => {
 			</div>
 			<div>
 				<p>Article :</p>
-				<MyEditor onChangeEditor={(content:any) => setForm({...form, content: content})} />
+				<MyEditor onChangeEditor={(content:any) => console.log(content)} />
 			</div>
 			<Button variant='contained' onClick={Submit}>Submit</Button>
 		</div>

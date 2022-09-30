@@ -126,10 +126,44 @@ const MyEditor = ({onChangeEditor}) => {
   const onChange = (editorState:any) => {
     setEditorState(editorState)
     
+    
+  };
+
+  useEffect(() => {
     const options = {
+      inlineStyles: {
+        center: {
+          element: 'p',
+          style: {
+            textAlign: 'center'
+          }
+        },
+        right: {
+          element: 'p',
+          style: {
+            textAlign: 'right'
+          }
+        }
+      },
       entityStyleFn: (entity) => {
         const entityType = entity.get('type').toLowerCase();
-          if (entityType === 'draft-js-video-plugin-video') {
+        if (entityType === 'image'){
+          const data = entity.getData()
+          console.log(data)
+          return {
+            element: 'img',
+            attributes: {
+              src: data.src
+            },
+            style: {
+              display: 'block',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+              width: data.width || 'none',
+              heigth: 'none'
+            }
+          }
+        }else if (entityType === 'draft-js-video-plugin-video') {
             const data = entity.getData();
             return {
               element: 'video',
@@ -137,19 +171,26 @@ const MyEditor = ({onChangeEditor}) => {
                 src: data.src,
               },
             };
-          }
+        }
           return null;
       },
     };
   
       const byStateToHTML = stateToHTML(editorState.getCurrentContent(), options)
       onChangeEditor(byStateToHTML)
-  };
+  },[editorState])
+
+  // set height editr
+  const csEditorContent = document.getElementsByClassName('public-DraftEditor-content')
+
+  if (csEditorContent?.[0]){
+    csEditorContent[0].style.minHeight = '10rem'
+  }
 
 
   return (
     <NoSsr>
-      <div className={`border-4`} >
+      <div className={`border-4 draftjsEditor`} >
         <Toolbar >
             {
               // may be use React.Fragment instead of div to improve perfomance after React 16
@@ -194,7 +235,7 @@ const MyEditor = ({onChangeEditor}) => {
             ref={editorRef}
           />
         </div>
-         <AlignmentTool />
+         {/* <AlignmentTool /> */}
       </div>
       
       

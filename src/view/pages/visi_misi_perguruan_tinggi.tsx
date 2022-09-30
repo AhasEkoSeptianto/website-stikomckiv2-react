@@ -44,11 +44,11 @@ class visi_misi_perguruan_tinggi extends React.Component<any, any>{
 				<ScrollableAnchor id="main">
 					<div></div>
 				</ScrollableAnchor>
-				<div className='container mx-auto my-10'>
+				<div className='container mx-auto  my-10'>
 					<Grid container spacing={5}>
 						<Grid item sm={8}>
 							<Paper
-								className={s.paperMain}
+								className={'p-10 w-full'}
 								variant="outlined"
 								square
 							>

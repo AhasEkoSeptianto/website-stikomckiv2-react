@@ -50,7 +50,7 @@ class kalender_akademik extends React.Component {
 					<Grid container spacing={5}>
 						<Grid item sm={8}>
 							<Paper
-								className={s.paperMain}
+								className={'p-10'}
 								variant="outlined"
 								square
 							>
