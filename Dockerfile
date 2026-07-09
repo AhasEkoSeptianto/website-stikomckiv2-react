@@ -1,5 +1,5 @@
 # Stage 1
-FROM node:16.16.0 as build-stage
+FROM node:18 as build-stage
 WORKDIR /netlify-stikomcki-vercel
 COPY package.json .
 COPY . .
