@@ -80,7 +80,7 @@
   },
   "scripts": {
     "start": "set NODE_OPTIONS=--openssl-legacy-provider && craco start",
-    "build": "craco build&&yarn global add serve build",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && craco build&&yarn global add serve build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -101,9 +101,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "engines": {
-    "node": ">=18"
   },
   "devDependencies": {
     "autoprefixer": "^9.8.6",
