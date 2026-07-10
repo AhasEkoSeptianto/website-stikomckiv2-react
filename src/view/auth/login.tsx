@@ -10,9 +10,9 @@ import Logo from "./../../asset/image/logo Stikom.png";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import CircularProgress from "@mui/material/CircularProgress";
-import Snackbar from '@mui/material/Snackbar';
-import Slide from '@mui/material/Slide';
-import CloseIcon from '@mui/icons-material/Close';
+import Snackbar from "@mui/material/Snackbar";
+import Slide from "@mui/material/Slide";
+import CloseIcon from "@mui/icons-material/Close";
 
 // router
 import { connect } from "react-redux";
@@ -27,69 +27,67 @@ import { setCookies } from "../../lib/cookie";
 import { Alert, Button, IconButton } from "@mui/material";
 
 function TransitionDown(props: any) {
-	return <Slide {...props} direction="down" />;
-  }
-
-  
+  return <Slide {...props} direction="down" />;
+}
 
 class login extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-        isLoading: false,
+      isLoading: false,
       openSnackbar: false,
       transition: TransitionDown,
       form: {
-        username: '',
-        password: ''
-      }
+        username: "admin",
+        password: "admin",
+      },
     };
   }
 
   submitForm = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
     this.setState({ isLoading: true });
-    			await post(`${process.env.REACT_APP_ENP_BE}api/login`, this.state.form)
-            .then(res => {
-              console.log(res)
-              setCookies('user', res.data.name);
-              setCookies('auth-token', res.data.token);
-              // this.props.history.push('/dashboard');
-              window.location.href = '/dashboard'
-            }).catch(err => {
-              console.log(err)
-            })
+    await post(`${process.env.REACT_APP_ENP_BE}api/login`, this.state.form)
+      .then((res) => {
+        console.log(res);
+        setCookies("user", res.data.name);
+        setCookies("auth-token", res.data.token);
+        // this.props.history.push('/dashboard');
+        window.location.href = "/dashboard";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     this.setState({ isLoading: false });
   };
 
   componentDidMount() {
     // alert("gunakan akun\nusername: admin\npassword: admin");
-	this.setState({ ...this.state, openSnackbar: true })
+    this.setState({ ...this.state, openSnackbar: true });
   }
 
   render() {
-
-	const { openSnackbar } = this.state
+    const { openSnackbar } = this.state;
 
     const HandleChangeForm = (e: any) => {
-      this.setState({ ...this.state, form: { ...this.state.form, [e.target.name]: e.target.value } })
-    }
-    console.log(this.state.form)
+      this.setState({
+        ...this.state,
+        form: { ...this.state.form, [e.target.name]: e.target.value },
+      });
+    };
     return (
       <div className={s.bg}>
-
         <Snackbar
           open={openSnackbar}
           onClose={() => this.setState({ ...this.state, openSnackbar: false })}
-          autoHideDuration={5000}
-          
+          // autoHideDuration={5000}
         >
-           <Alert severity="info">
-             <p>gunakan akun</p>
-             <p>username: admin</p>
-             <p>password: admin</p>
-           </Alert>
+          <Alert severity="info">
+            <p>gunakan akun</p>
+            <p>username: admin</p>
+            <p>password: admin</p>
+          </Alert>
         </Snackbar>
 
         <form className={s.container_login} onSubmit={this.submitForm}>
@@ -116,6 +114,7 @@ class login extends React.Component<any, any> {
                 className={`${s.form_user} outline-none`}
                 onChange={HandleChangeForm}
                 required
+                value={this.state.form.username}
               />
             </div>
             <div className={s.password} id="password">
@@ -127,10 +126,11 @@ class login extends React.Component<any, any> {
                 placeholder="password"
                 className={`${s.form_user} outline-none`}
                 onChange={HandleChangeForm}
+                value={this.state.form.password}
                 required
               />
             </div>
-            <button className={s.button} type='submit'>
+            <button className={s.button} type="submit">
               Login{" "}
               {this.state.isLoading === true ? (
                 <Fragment>

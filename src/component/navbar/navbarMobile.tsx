@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Brand from "../header/Brand";
 import Header from "../header/Header";
 import MenuIcon from "@mui/icons-material/Menu";
 import { HashLink as Link } from "react-router-hash-link";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { is_auth } from "../../lib/is_auth";
+import { removeCookies } from "src/lib/cookie";
 
 const dataNav = [
   {
@@ -43,6 +45,23 @@ const dataNav = [
 
 export default function NavbarMobile() {
   const [openTogle, setOpenTogle] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    CheckIsLogged();
+  }, []);
+
+  const CheckIsLogged = async () => {
+    let isLogged = await is_auth();
+    setIsLogged(isLogged || false);
+  };
+
+  const HandleLogout = () => {
+    removeCookies("auth-token");
+    removeCookies("user");
+    window.location.reload();
+  };
+
   return (
     <div>
       <div className="p-2 flex items-center justify-between">
@@ -66,6 +85,21 @@ export default function NavbarMobile() {
             )}
           </div>
         ))}
+
+        {isLogged ? (
+          <Fragment>
+            <p className="p-2">
+              <Link to="/dashboard">Admin Dashboard</Link>
+            </p>
+            <p className="py-2" onClick={HandleLogout}>
+              Logout
+            </p>
+          </Fragment>
+        ) : (
+          <>
+            <Link to="/login">Login</Link>
+          </>
+        )}
       </div>
     </div>
   );
