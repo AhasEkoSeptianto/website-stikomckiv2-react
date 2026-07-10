@@ -10,13 +10,12 @@ import { connect } from "react-redux";
 
 import PersonRoundedIcon from "@mui/icons-material/PersonRounded";
 import SettingsIcon from "@mui/icons-material/Settings";
-import ListItemIcon from '@mui/material/ListItemIcon';
-import LogoutIcon from '@mui/icons-material/Logout';
-
+import ListItemIcon from "@mui/material/ListItemIcon";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 import { getCookies, removeCookies } from "src/lib/cookie";
 import { changeName, FormatName } from "src/lib/changeFormName";
-
+import MenuIcon from "@mui/icons-material/Menu";
 import LogoStikom from "src/asset/image/logo Stikom.png";
 import { Link, Route, Switch } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
@@ -35,7 +34,8 @@ class BaseDashboardAdmin extends React.Component<any, any> {
     super(props);
     this.state = {
       uri: this.props.match,
-      anchorEl: null
+      anchorEl: null,
+      toggleNavMobile: false,
     };
   }
 
@@ -61,36 +61,51 @@ class BaseDashboardAdmin extends React.Component<any, any> {
   }
 
   render() {
-    
     const open = Boolean(this.state.anchorEl);
-    
+
     const HandleClickPopup = (event: any) => {
-      this.setState({ ...this.state, anchorEl: event.currentTarget })
+      this.setState({ ...this.state, anchorEl: event.currentTarget });
     };
 
     const HandleClosePopup = () => {
-      this.setState({ ...this.state, anchorEl: null })
+      this.setState({ ...this.state, anchorEl: null });
     };
 
     const Logout = () => {
-      removeCookies('auth-token');
-      removeCookies('user');
-      window.location.href = '/'
-    }
+      removeCookies("auth-token");
+      removeCookies("user");
+      window.location.href = "/";
+    };
 
-    let routeNow = this.props.location.pathname
-    
+    let routeNow = this.props.location.pathname;
+
     return (
-      <div className="grid grid-cols-12">
-        <div className="col-span-2 min-h-screen bg-gray-800">
-          <div className="p-2 flex items-center space-x-2 mb-5">
-            <Avatar sx={{ width: 50, height: 50 }}>
-              <PersonRoundedIcon sx={{ fontSize: 50 }} />
-            </Avatar>
-            <div>
-              <p className="font-medium text-white">
-                {FormatName(getCookies("user"))}
-              </p>
+      <div className="grid lg:grid-cols-12">
+        <div
+          className={`${this.state.toggleNavMobile ? "w-96 min-h-screen " : "w-0 h-0 lg:w-full lg:min-h-screen"} absolute left-0 z-50 lg:relative overflow-hidden transition-all duration-700 lg:block col-span-2  bg-gray-800`}
+        >
+          <div className="flex items-center justify-between p-2 mb-5">
+            <div className=" flex items-center space-x-2">
+              <Avatar sx={{ width: 50, height: 50 }}>
+                <PersonRoundedIcon sx={{ fontSize: 50 }} />
+              </Avatar>
+              <div>
+                <p className="font-medium text-white">
+                  {FormatName(getCookies("user"))}
+                </p>
+              </div>
+            </div>
+            <div className="lg:hidden">
+              <MenuIcon
+                onClick={() =>
+                  this.setState((prev: any) => ({
+                    ...prev,
+                    toggleNavMobile: !this.state.toggleNavMobile,
+                  }))
+                }
+                sx={{ width: 40, height: 40 }}
+                className="mr-2 text-white "
+              />
             </div>
           </div>
 
@@ -98,11 +113,11 @@ class BaseDashboardAdmin extends React.Component<any, any> {
 
           <div className="space-y-1 border-t">
             {MenuSideBarAdmin.map((item, idx) => (
-              <Link
-                to={item.link + ""}
-              >
+              <Link to={item.link + ""}>
                 <div>
-                  <div className={`flex items-center p-3 space-x-2 hover:bg-blue-500 text-gray-100 font-medium cursor-pointer ${routeNow === item.link ? 'bg-blue-500' : ''}`}>
+                  <div
+                    className={`flex items-center p-3 space-x-2 hover:bg-blue-500 text-gray-100 font-medium cursor-pointer ${routeNow === item.link ? "bg-blue-500" : ""}`}
+                  >
                     {item.icon}
                     <p>{item.label}</p>
                   </div>
@@ -115,8 +130,20 @@ class BaseDashboardAdmin extends React.Component<any, any> {
         <div className="col-span-10">
           <div className="w-full flex items-center justify-between bg-blue-500 h-14">
             <div className="flex items-center px-2">
+              <div className="lg:hidden">
+                <MenuIcon
+                  onClick={() =>
+                    this.setState((prev: any) => ({
+                      ...prev,
+                      toggleNavMobile: !this.state.toggleNavMobile,
+                    }))
+                  }
+                  sx={{ width: 40, height: 40 }}
+                  className="mr-2 "
+                />
+              </div>
               <img src={LogoStikom} className="w-12" />
-              <div className="space-y-0.5">
+              <div className="space-y-0.5 hidden lg:block">
                 <h4
                   className="text-sm font-bold p-0.5"
                   style={{ color: "red", backgroundColor: "rgb(0,0,0,0.5)" }}
@@ -135,9 +162,7 @@ class BaseDashboardAdmin extends React.Component<any, any> {
               <p className="text-white underline">
                 {FormatName(getCookies("user"))}
               </p>
-              <IconButton
-                onClick={HandleClickPopup}
-              >
+              <IconButton onClick={HandleClickPopup}>
                 <Avatar sx={{ width: 30, height: 30 }}>
                   <PersonRoundedIcon sx={{ fontSize: 30 }} />
                 </Avatar>
@@ -176,18 +201,18 @@ class BaseDashboardAdmin extends React.Component<any, any> {
                 transformOrigin={{ horizontal: "right", vertical: "top" }}
                 anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
               >
-                <Link to='/dashboard/settings'>
+                <Link to="/dashboard/settings">
                   <MenuItem>
                     <Avatar /> Profile
                   </MenuItem>
                 </Link>
-                <Link to='/dashboard/settings?tab=account'>
+                <Link to="/dashboard/settings?tab=account">
                   <MenuItem>
                     <Avatar /> My account
                   </MenuItem>
                 </Link>
                 <Divider />
-                <Link to='/dashboard/settings'>
+                <Link to="/dashboard/settings">
                   <MenuItem>
                     <ListItemIcon>
                       <SettingsIcon fontSize="small" />
@@ -219,17 +244,25 @@ class BaseDashboardAdmin extends React.Component<any, any> {
 const RoutePage = () => {
   return (
     <Switch>
-				<Route path={'/dashboard'} exact={true} component={Dashboard} />
-				<Route path={'/dashboard/admin'} exact={true} component={AdminPage} />
-				<Route path={`/dashboard/berita`} exact={true} component={Berita} />
-				<Route path={`/dashboard/mahasiswa`} exact={true} component={Mahasiswa} />
-        <Route path={`/dashboard/mahasiswa/add`} exact={true} component={addMhs} />
-				<Route path={`/dashboard/mahasiswa/update`} exact={true} component={updateMhs} />
-        <Route path={`/dashboard/dosen`} exact={true} component={dosen} />
-				<Route path={`/dashboard/settings`} exact={true} component={Settings} />
-			</Switch>
-  )
-}
+      <Route path={"/dashboard"} exact={true} component={Dashboard} />
+      <Route path={"/dashboard/admin"} exact={true} component={AdminPage} />
+      <Route path={`/dashboard/berita`} exact={true} component={Berita} />
+      <Route path={`/dashboard/mahasiswa`} exact={true} component={Mahasiswa} />
+      <Route
+        path={`/dashboard/mahasiswa/add`}
+        exact={true}
+        component={addMhs}
+      />
+      <Route
+        path={`/dashboard/mahasiswa/update`}
+        exact={true}
+        component={updateMhs}
+      />
+      <Route path={`/dashboard/dosen`} exact={true} component={dosen} />
+      <Route path={`/dashboard/settings`} exact={true} component={Settings} />
+    </Switch>
+  );
+};
 
 const mapStateToProps = (state: any) => {
   return {
