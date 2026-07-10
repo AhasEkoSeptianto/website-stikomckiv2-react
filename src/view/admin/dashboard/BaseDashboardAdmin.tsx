@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // material ui
 import { Avatar, Divider, IconButton, Menu, MenuItem } from "@mui/material";
 
@@ -77,6 +77,12 @@ class BaseDashboardAdmin extends React.Component<any, any> {
       window.location.href = "/";
     };
 
+    const HandleChangeRoute = () => {
+      if (this.state.toggleNavMobile) {
+        this.setState((prev: any) => ({ ...prev, toggleNavMobile: false }));
+      }
+    };
+
     let routeNow = this.props.location.pathname;
 
     return (
@@ -111,7 +117,7 @@ class BaseDashboardAdmin extends React.Component<any, any> {
 
           <Divider />
 
-          <div className="space-y-1 border-t">
+          <div className="space-y-1 border-t" onClick={HandleChangeRoute}>
             {MenuSideBarAdmin.map((item, idx) => (
               <Link to={item.link + ""}>
                 <div>
