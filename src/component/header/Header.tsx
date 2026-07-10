@@ -19,10 +19,10 @@ import IconButton from "@mui/material/IconButton";
 
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Button from '../atoms/button/index'
+import Button from "../atoms/button/index";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
-class Header extends React.Component<any, any>{
+class Header extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -51,18 +51,17 @@ class Header extends React.Component<any, any>{
     };
 
     const Logout = () => {
-      removeCookies('auth-token')
-      removeCookies('user')
-      console.log('here')
-      window.location.reload()
-    }
+      removeCookies("auth-token");
+      removeCookies("user");
+      console.log("here");
+      window.location.reload();
+    };
 
     return (
       <Fragment>
         <div className="bg-gray-100 border-b py-1">
           <div className="flex items-center justify-between container mx-auto">
             <div className="flex items-center space-x-7">
-              
               <div className="flex items-center space-x-1">
                 <AddIcCallIcon
                   className="text-gray-500"
@@ -133,7 +132,7 @@ class Header extends React.Component<any, any>{
                 {isAuth ? (
                   <Fragment>
                     <Link to="/dashboard">
-                      <MenuItem>  
+                      <MenuItem>
                         <DashboardIcon
                           className="mr-3"
                           sx={{ width: 20, height: 20 }}
@@ -142,22 +141,21 @@ class Header extends React.Component<any, any>{
                       </MenuItem>
                     </Link>
                     <MenuItem onClick={Logout}>
-                      
-                        <LogoutIcon
-                          className="mr-3"
-                          sx={{ width: 20, height: 20 }}
-                        />
-                        <span>Logout</span>
+                      <LogoutIcon
+                        className="mr-3"
+                        sx={{ width: 20, height: 20 }}
+                      />
+                      <span>Logout</span>
                     </MenuItem>
                   </Fragment>
                 ) : (
                   <Link to="/login">
                     <MenuItem>
-                        <LoginIcon
-                          className="mr-3"
-                          sx={{ width: 20, height: 20 }}
-                        />
-                        <span>Login</span>
+                      <LoginIcon
+                        className="mr-3"
+                        sx={{ width: 20, height: 20 }}
+                      />
+                      <span>Login</span>
                     </MenuItem>
                   </Link>
                 )}

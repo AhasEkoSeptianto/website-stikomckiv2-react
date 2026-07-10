@@ -10,11 +10,11 @@ import { HashLink as Link } from "react-router-hash-link";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Header from "../header/Header";
 import { useAppSelector } from "src/redux/hooks";
+import Brand from "../header/Brand";
 
 function Navbar() {
-
-  const count = useAppSelector(state => state.value)
-  console.log(count)
+  const count = useAppSelector((state) => state.value);
+  console.log(count);
 
   const [activeMenu, setActiveMenu] = useState<any>({
     "Perguruan Tinggi": false,
@@ -62,19 +62,7 @@ function Navbar() {
     <div className="sticky top-0 bg-white shadow z-50">
       <Header />
       <div className="container mx-auto flex items-center justify-between py-1">
-        <Link to="/" className="flex items-center space-x-2">
-          <Fragment>
-            <img src={logoNav} className="w-16" />
-            <div>
-              <p className="font-bold text-red-500">
-                Sekolah Tinggi Ilmu Komputer
-              </p>
-              <p className="font-bold text-blue-500">
-                Cipta Karya informatika Kampus D
-              </p>
-            </div>
-          </Fragment>
-        </Link>
+        <Brand />
 
         <div className="flex items-center space-x-5">
           {dataNav.map((nav, idx) => (
@@ -119,7 +107,6 @@ function Navbar() {
               </div>
             </div>
           ))}
-          
         </div>
       </div>
     </div>

@@ -2,7 +2,6 @@ import React, { Fragment, useEffect } from "react";
 
 // my nav
 
-
 // Scrillable module
 import ScrollableAnchor from "react-scrollable-anchor";
 
@@ -15,6 +14,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Footer from "src/component/footer/Footer";
 import { useLocation } from "react-router-dom";
+import NavbarMobile from "src/component/navbar/navbarMobile";
 
 class Home extends React.Component {
   async componentDidMount() {
@@ -63,7 +63,16 @@ class Home extends React.Component {
     return (
       <div className={s.containermPage}>
         <Try />
-        <Navbar />
+
+        {/* navbar */}
+        <div className="lg:hidden">
+          <NavbarMobile />
+        </div>
+        <div className="hidden lg:block">
+          <Navbar />
+        </div>
+        {/* end navbar */}
+
         <ScrollableAnchor id="main">
           <div></div>
         </ScrollableAnchor>
@@ -76,7 +85,9 @@ class Home extends React.Component {
         >
           <div className="bg-slider1 w-screen h-sliderImage bg-cover flex flex-col justify-center">
             <div className="w-10/12 mx-auto text-white space-y-1">
-              <h2 className="bg-black bg-opacity-70 p-1 w-max text-2xl">Selamat datang</h2>
+              <h2 className="bg-black bg-opacity-70 p-1 w-max text-2xl">
+                Selamat datang
+              </h2>
               <h4 className="bg-black bg-opacity-70 p-1 w-max text-2xl">
                 di Sekolah Tinggi Ilmu Komputer Cipta Karya Informatika Kampus D
               </h4>
@@ -102,9 +113,9 @@ class Home extends React.Component {
 
 const Try = () => {
   const location = useLocation();
-  
+
   const query = new URLSearchParams(location.search);
-  let code = query.get('code') 
+  let code = query.get("code");
 
   // useEffect(() => {
   //   POST('api/login-google', { code: code })
@@ -113,7 +124,7 @@ const Try = () => {
   //     }).catch(err => console.log(err))
   // },[code])
 
-  return <Fragment></Fragment>
-}
+  return <Fragment></Fragment>;
+};
 
 export default Home;
